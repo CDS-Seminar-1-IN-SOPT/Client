@@ -1,13 +1,13 @@
 import Router from 'cores/router';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'styles/globalStyle';
-import { theme } from 'styles/theme';
+import { theme, mixins } from 'styles/theme';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={{ ...theme, ...mixins }}>
         <Router />
       </ThemeProvider>
     </>
