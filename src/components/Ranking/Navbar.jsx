@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 function Navbar() {
   return (
     <Styled.Root>
-      <h1>네비게이션바 컴포넌트 입니다.</h1>
+      <Styled.List>전체뮤지컬연극클래식어린이등등등</Styled.List>
     </Styled.Root>
   );
 }
@@ -12,5 +13,9 @@ function Navbar() {
 export default Navbar;
 
 const Styled = {
-  Root: styled.div``,
+  Root: styled.div`
+    font-size: ${theme.fontSizes.body02};
+    font-weight: ${theme.fontWeights.body02};
+  `,
+  List: styled.ul``,
 };

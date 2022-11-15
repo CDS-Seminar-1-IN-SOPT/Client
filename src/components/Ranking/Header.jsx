@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 function Header() {
   return (
     <Styled.Root>
-      <h1>여긴 헤더입니다.</h1>
+      <Styled.Title>랭킹</Styled.Title>
     </Styled.Root>
   );
 }
@@ -12,5 +13,9 @@ function Header() {
 export default Header;
 
 const Styled = {
-  Root: styled.div``,
+  Root: styled.div`
+    font-size: ${theme.fontSizes.title01};
+    font-weight: ${theme.fontWeights.title01};
+  `,
+  Title: styled.div``,
 };

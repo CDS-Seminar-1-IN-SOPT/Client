@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 function PeriodView() {
   return (
     <Styled.Root>
-      <h1>기간 조회 컴포넌트 입니다.</h1>
+      <Styled.Period>2022. 11. 05 ~ 현재 16:30까지</Styled.Period>
     </Styled.Root>
   );
 }
@@ -12,5 +13,9 @@ function PeriodView() {
 export default PeriodView;
 
 const Styled = {
-  Root: styled.div``,
+  Root: styled.div`
+    font-size: ${theme.fontSizes.body03};
+    font-weight: ${theme.fontWeights.body03};
+  `,
+  Period: styled.p``,
 };
