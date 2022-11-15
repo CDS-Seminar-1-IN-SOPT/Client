@@ -1,0 +1,21 @@
+export const showDetailData = {
+  show: {
+    id: 1,
+    title: '모딜리아니',
+    imageURL: 'https://asldfjapsodfiwq',
+    isExclusive: true,
+    showType: 2,
+    ageLimit: '7세 이상',
+    showStartAt: '2022-11-01T18:29:23.236Z',
+    showEndAt: '2023-11-15T18:29:23.236Z',
+    runningTime: '135분 (인터미션 20분 포함)',
+    showTimeDiscription: '평일 19시\n30분\n주말 및 공휴일 14시, 18시30분\n(월요일 공연 없음)',
+    place: '광림아트센터 BBCH 홀',
+    vipPrice: 150000,
+    rPrice: 120000,
+    sPrice: 80000,
+    aPrice: 60000,
+    castScheduleImageURL: 'https://asldfjapsodfiwq',
+    likeCount: 123,
+  },
+};
