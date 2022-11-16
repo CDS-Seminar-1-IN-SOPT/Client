@@ -1,13 +1,27 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
 function PeriodSelector() {
+  const [selectedPeriod, setSelectedPeriod] = useState('dayPeriod');
+
+  const selectedDayPeriod = () => {
+    setSelectedPeriod('dayPeriod');
+  };
+
+  const selectedWeekPeriod = () => {
+    setSelectedPeriod('weekPeriod');
+  };
+
   return (
     <Styled.Root>
       <Styled.PeriodContainer>
-        <Styled.DayPeriod>일간</Styled.DayPeriod>
-        <Styled.WeekPeriod>주간</Styled.WeekPeriod>
+        <Styled.DayPeriod selectedPeriod={selectedPeriod} onClick={selectedDayPeriod}>
+          일간
+        </Styled.DayPeriod>
+        <Styled.WeekPeriod selectedPeriod={selectedPeriod} onClick={selectedWeekPeriod}>
+          주간
+        </Styled.WeekPeriod>
       </Styled.PeriodContainer>
     </Styled.Root>
   );
@@ -29,11 +43,22 @@ const Styled = {
   `,
   DayPeriod: styled.div`
     ${mixins.rowFlexBox}
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.grey_01};
     border-radius: 0.5rem 0 0 0.5rem;
     width: 50%;
     height: 100%;
+    ${(props) =>
+      props.selectedPeriod === 'dayPeriod' &&
+      css`
+        background-color: ${theme.colors.grey_01};
+        color: ${theme.colors.white};
+      `}
+    ${(props) =>
+      props.selectedPeriod === 'weekPeriod' &&
+      css`
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.grey_02};
+        border: 0.1rem solid ${theme.colors.grey_04};
+      `}
   `,
   WeekPeriod: styled.div`
     ${mixins.rowFlexBox}
@@ -44,5 +69,17 @@ const Styled = {
     border-radius: 0 0.5rem 0.5rem 0;
     width: 50%;
     height: 100%;
+    ${(props) =>
+      props.selectedPeriod === 'dayPeriod' &&
+      css`
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.grey_02};
+      `}
+    ${(props) =>
+      props.selectedPeriod === 'weekPeriod' &&
+      css`
+        background-color: ${theme.colors.grey_01};
+        color: ${theme.colors.white};
+      `}
   `,
 };
