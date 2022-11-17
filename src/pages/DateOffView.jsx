@@ -1,3 +1,4 @@
+import Calender from 'components/DateOff/Calendar/Calendar';
 import Header from 'components/DateOff/Header';
 import TicketList from 'components/DateOff/TicketList';
 import React from 'react';
@@ -7,6 +8,7 @@ function DateOffView() {
   return (
     <Styled.Root>
       <Header />
+      <Calender />
       <TicketList />
     </Styled.Root>
   );
