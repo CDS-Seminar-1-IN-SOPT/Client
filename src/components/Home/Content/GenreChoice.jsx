@@ -53,7 +53,7 @@ const Styled = {
     width: 37.5rem;
     display: flex;
     flex-wrap: wrap;
-
+    justify-content: center;
     box-sizing: border-box;
     padding-left: 2.75rem;
     padding-right: 2.75rem;
@@ -64,7 +64,9 @@ const Styled = {
     align-items: center;
     margin-top: 2.8rem;
   `,
-  GenreImg: styled.img``,
+  GenreImg: styled.img`
+    margin-left: 0.5rem;
+  `,
   GerneText: styled.span`
     font-family: 'Inter';
     font-style: normal;
