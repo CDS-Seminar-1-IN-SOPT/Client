@@ -17,7 +17,7 @@ const Styled = {
     ${mixins.rowFlexBox}
     position: absolute;
     left: 2.1rem;
-    top: 13.7rem;
+    top: 14.7rem;
   `,
   Period: styled.p`
     font-size: ${theme.fontSizes.body03};

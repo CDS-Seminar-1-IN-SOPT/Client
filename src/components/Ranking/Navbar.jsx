@@ -47,6 +47,7 @@ const Styled = {
         font-weight: ${theme.fontWeights.body01};
         border-bottom: 0.3em solid ${theme.colors.black};
         height: 3.55rem;
+        padding-top: 0.3rem;
       `}
   `,
 };
