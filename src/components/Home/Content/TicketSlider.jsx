@@ -46,8 +46,8 @@ function TicketSlider({ bannerData }) {
         navigation={true}
         className="mySwiper">
         {bannerData.map((v) => (
-          <Styled.Swiper key={v.url}>
-            <Styled.SwieperImg src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <Styled.Swiper key={v.id}>
+            <Styled.SwieperImg key={v.url} src="https://swiperjs.com/demos/images/nature-2.jpg" />
           </Styled.Swiper>
         ))}
       </Swiper>
@@ -58,7 +58,7 @@ function TicketSlider({ bannerData }) {
 const Styled = {
   TicketSlider: styled.section`
     overflow: hidden;
-    height: 700px;
+    height: 266px;
   `,
   Swiper: styled(SwiperSlide)`
     width: 37.5rem;
