@@ -9,6 +9,18 @@ import 'swiper/css/pagination';
 function TicketSlider({ bannerData }) {
   // console.log(bannerData);
 
+  const SwiperStyle = createGlobalStyle`
+    .swiper-pagination-clickable{
+    top:1.4rem;
+    z-index: 2;
+    overflow: visible;
+    position: relative;
+  };
+  .swiper-coverflow{
+    overflow:visible;
+  }
+  `;
+
   return (
     <Styled.TicketSlider>
       <SwiperStyle />
