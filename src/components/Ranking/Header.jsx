@@ -27,14 +27,13 @@ export default Header;
 
 const Styled = {
   Root: styled.div`
-    justify-content: space-between;
-    font-size: ${theme.fontSizes.title01};
-    font-weight: ${theme.fontWeights.title01};
     width: 37.5rem;
     height: 4rem;
   `,
   Title: styled.div`
     ${mixins.rowFlexBox}
+    font-size: ${theme.fontSizes.title01};
+    font-weight: ${theme.fontWeights.title01};
     position: absolute;
     width: 3.5rem;
     height: 2.2rem;

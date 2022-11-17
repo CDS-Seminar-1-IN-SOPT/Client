@@ -36,10 +36,12 @@ const Styled = {
   `,
   PeriodContainer: styled.div`
     ${mixins.rowFlexBox}
+    position: absolute;
     width: 34rem;
     height: 4.1rem;
+    left: 1.7rem;
+    top: 4.5rem;
     border-radius: 0.5rem;
-    margin-left: 1.2rem;
   `,
   DayPeriod: styled.div`
     ${mixins.rowFlexBox}
