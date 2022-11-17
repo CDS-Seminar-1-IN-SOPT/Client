@@ -9,19 +9,19 @@ function GenreChoice() {
   return (
     <Styled.GenreChoice>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={concert} style={{ width: '3rem', height: '2.6rem' }} />
+        <Styled.GenreImg src={concert} />
         <Styled.GerneText>콘서트</Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={musical} style={{ width: '3.6rem', height: '2.6rem' }} />
+        <Styled.GenreImg src={musical} />
         <Styled.GerneText>뮤지컬</Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={play} style={{ width: '3rem', height: '3rem' }} />
+        <Styled.GenreImg src={play} />
         <Styled.GerneText>연극</Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={sing} style={{ width: '3rem', height: '3rem' }} />
+        <Styled.GenreImg src={sing} />
         <Styled.GerneText>
           무용&
           <br />
@@ -29,7 +29,7 @@ function GenreChoice() {
         </Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={event} style={{ width: '3rem', height: '3rem' }} />
+        <Styled.GenreImg src={event} />
         <Styled.GerneText>
           행사&
           <br />
@@ -37,7 +37,7 @@ function GenreChoice() {
         </Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={family} style={{ width: '3rem', height: '2.4rem' }} />
+        <Styled.GenreImg src={family} />
         <Styled.GerneText>
           가족&
           <br />
@@ -50,13 +50,28 @@ function GenreChoice() {
 
 const Styled = {
   GenreChoice: styled.section`
-    width: auto;
-    margin: 3.6rem 2.75rem 0px 2.75rem;
-    height: 30rem;
+    width: 37.5rem;
     display: flex;
+    flex-wrap: wrap;
+
+    box-sizing: border-box;
+    padding-left: 2.75rem;
+    padding-right: 2.75rem;
   `,
-  GenreDiv: styled.div``,
+  GenreDiv: styled.div`
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    margin-top: 2.8rem;
+  `,
   GenreImg: styled.img``,
-  GerneText: styled.span``,
+  GerneText: styled.span`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    margin-left: 1.8rem;
+  `,
 };
 export default GenreChoice;
