@@ -21,7 +21,7 @@ function Ranking() {
     <Styled.Root>
       <Header />
       <PeriodSelector />
-      <Navbar showData={showData} />
+      <Navbar showData={showData} setShowData={setShowData} />
       <PeriodView />
       <ShowItemContainer showData={showData} />
     </Styled.Root>
