@@ -9,19 +9,19 @@ function GenreChoice() {
   return (
     <Styled.GenreChoice>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={concert} />
+        <Styled.GenreImg src={concert} style={{ width: '3rem', height: '2.6rem' }} />
         <Styled.GerneText>콘서트</Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={musical} />
+        <Styled.GenreImg src={musical} style={{ width: '3.6rem', height: '2.6rem' }} />
         <Styled.GerneText>뮤지컬</Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={play} />
+        <Styled.GenreImg src={play} style={{ width: '3rem', height: '3rem' }} />
         <Styled.GerneText>연극</Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={sing} />
+        <Styled.GenreImg src={sing} style={{ width: '3rem', height: '3rem' }} />
         <Styled.GerneText>
           무용&
           <br />
@@ -29,7 +29,7 @@ function GenreChoice() {
         </Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={event} />
+        <Styled.GenreImg src={event} style={{ width: '3rem', height: '3rem' }} />
         <Styled.GerneText>
           행사&
           <br />
@@ -37,7 +37,7 @@ function GenreChoice() {
         </Styled.GerneText>
       </Styled.GenreDiv>
       <Styled.GenreDiv>
-        <Styled.GenreImg src={family} />
+        <Styled.GenreImg src={family} style={{ width: '3rem', height: '2.4rem' }} />
         <Styled.GerneText>
           가족&
           <br />
