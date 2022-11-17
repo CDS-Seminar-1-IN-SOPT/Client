@@ -34,6 +34,7 @@ const Styled = {
     height: 17rem;
     left: 0.4rem;
     top: 16.5rem;
+    cursor: pointer;
     margin: 0 auto;
   `,
   ShowItem: styled.div`
