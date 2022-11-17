@@ -10,11 +10,17 @@ function Home() {
 
   return (
     <>
-      <TicketSlider bannerData={homeData?.bannerList} />
-      <GenreChoice />
-      <RealtimeRank />
-      <AngelTicket />
-      <Recommend />
+      {homeData === null ? (
+        <div>로딩중</div>
+      ) : (
+        <>
+          <TicketSlider bannerData={homeData.bannerList} />
+          <GenreChoice />
+          <RealtimeRank />
+          <AngelTicket />
+          <Recommend />
+        </>
+      )}
     </>
   );
 }
