@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
-function ShowItemContainer() {
-  const [showData, setShowData] = useState([]);
-
-  useEffect(() => {
-    fetch('/show')
-      .then((res) => res.json())
-      .then((data) => {
-        setShowData(data.showList);
-      });
-  }, []);
-
+function ShowItemContainer({ showData }) {
   return (
     <Styled.Root>
       {showData.map((show) => (
