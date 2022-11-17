@@ -1,12 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
 function Navbar() {
+  const isPicked = useState(true);
+
   return (
     <Styled.Root>
       <Styled.List>
-        <Styled.Item>전체</Styled.Item>
+        <Styled.Item isPicked={isPicked}>전체</Styled.Item>
         <Styled.Item>콘서트</Styled.Item>
         <Styled.Item>뮤지컬</Styled.Item>
         <Styled.Item>연극</Styled.Item>
@@ -39,5 +41,12 @@ const Styled = {
     width: 100%;
     height: 3.5rem;
     border-bottom: 0.1rem solid ${theme.colors.grey_04};
+    ${({ isPicked }) =>
+      isPicked &&
+      css`
+        font-weight: ${theme.fontWeights.body01};
+        border-bottom: 0.3em solid ${theme.colors.black};
+        height: 3.55rem;
+      `}
   `,
 };
