@@ -1,20 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
-function Navbar() {
-  const isPicked = useState(true);
+function Navbar({ categories, setPickedCategoryId, pickedCategoryId }) {
+  const selectMenu = (e) => {
+    if (e.target.innerText === '전체') {
+      setPickedCategoryId(0);
+    }
+    if (e.target.innerText === '콘서트') {
+      setPickedCategoryId(1);
+    }
+    if (e.target.innerText === '뮤지컬') {
+      setPickedCategoryId(2);
+    }
+    if (e.target.innerText === '연극') {
+      setPickedCategoryId(3);
+    }
+    if (e.target.innerText === '클래식') {
+      setPickedCategoryId(4);
+    }
+    if (e.target.innerText === '전시회') {
+      setPickedCategoryId(5);
+    }
+    if (e.target.innerText === '어린이') {
+      setPickedCategoryId(6);
+    }
+  };
 
   return (
     <Styled.Root>
       <Styled.List>
-        <Styled.Item isPicked={isPicked}>전체</Styled.Item>
-        <Styled.Item>콘서트</Styled.Item>
-        <Styled.Item>뮤지컬</Styled.Item>
-        <Styled.Item>연극</Styled.Item>
-        <Styled.Item>클래식</Styled.Item>
-        <Styled.Item>전시회</Styled.Item>
-        <Styled.Item>어린이</Styled.Item>
+        {categories.map((item) => (
+          <Styled.Item key={item.id} categoryId={item.id} pickedCategoryId={pickedCategoryId} onClick={selectMenu}>
+            {item.category}
+          </Styled.Item>
+        ))}
       </Styled.List>
     </Styled.Root>
   );
@@ -27,7 +47,7 @@ const Styled = {
     position: absolute;
     width: 34.8rem;
     height: 3.5rem;
-    left: 2rem;
+    left: 1.9rem;
     top: 9.4rem;
   `,
   List: styled.ul`
@@ -36,16 +56,17 @@ const Styled = {
   `,
   Item: styled.li`
     ${mixins.rowFlexBox};
+    color: ${theme.colors.grey_01};
     font-size: ${theme.fontSizes.body02};
     font-weight: ${theme.fontWeights.body02};
-    color: ${theme.colors.grey_01};
     width: 100%;
     height: 3.5rem;
     border-bottom: 0.1rem solid ${theme.colors.grey_04};
     cursor: pointer;
-    ${({ isPicked }) =>
-      isPicked &&
+    ${({ categoryId, pickedCategoryId }) =>
+      categoryId === pickedCategoryId &&
       css`
+        color: ${theme.colors.black};
         font-size: ${theme.fontSizes.body01};
         font-weight: ${theme.fontWeights.body01};
         border-bottom: 0.3em solid ${theme.colors.black};

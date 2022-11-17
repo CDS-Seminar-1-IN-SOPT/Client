@@ -2,11 +2,11 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
-function ShowItemContainer({ showData }) {
+function ShowItemContainer({ showData, pickedCategoryId }) {
   return (
     <Styled.Root>
       {showData.map((show) => (
-        <Styled.ShowItem key={show.id}>
+        <Styled.ShowItem key={show.id} showType={show.showType} pickedCategoryId={pickedCategoryId}>
           <Styled.ShowImageContainer>
             <Styled.ShowImage src={show.imageURL} alt="공연이미지" />
             <Styled.RankingFlag ranking={show.id}>{show.id}</Styled.RankingFlag>
@@ -52,6 +52,14 @@ const Styled = {
       height: 0.01rem;
       border-bottom: 0.1rem solid rgba(51, 51, 51, 0.04);
     }
+    ${({ pickedCategoryId, showType }) => {
+      if (pickedCategoryId !== showType && pickedCategoryId !== 0) {
+        return css`
+          display: none;
+        `;
+      }
+      return css``;
+    }}
   `,
   ShowImageContainer: styled.div`
     position: relative;

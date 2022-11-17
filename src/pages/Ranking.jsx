@@ -8,6 +8,16 @@ import styled from 'styled-components';
 
 function Ranking() {
   const [showData, setShowData] = useState([]);
+  const [pickedCategoryId, setPickedCategoryId] = useState(0);
+  const [categories] = useState([
+    { category: '전체', id: 0 },
+    { category: '콘서트', id: 1 },
+    { category: '뮤지컬', id: 2 },
+    { category: '연극', id: 3 },
+    { category: '클래식', id: 4 },
+    { category: '전시회', id: 5 },
+    { category: '어린이', id: 6 },
+  ]);
 
   useEffect(() => {
     fetch('/show')
@@ -21,9 +31,9 @@ function Ranking() {
     <Styled.Root>
       <Header />
       <PeriodSelector />
-      <Navbar showData={showData} setShowData={setShowData} />
+      <Navbar categories={categories} pickedCategoryId={pickedCategoryId} setPickedCategoryId={setPickedCategoryId} />
       <PeriodView />
-      <ShowItemContainer showData={showData} />
+      <ShowItemContainer showData={showData} pickedCategoryId={pickedCategoryId} />
     </Styled.Root>
   );
 }
