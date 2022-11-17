@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
 function ShowItemContainer() {
@@ -17,7 +17,10 @@ function ShowItemContainer() {
     <Styled.Root>
       {showData.map((show) => (
         <Styled.ShowItem key={show.id}>
-          <Styled.ShowImage src={show.imageURL} alt="공연이미지" />
+          <Styled.ShowImageContainer>
+            <Styled.ShowImage src={show.imageURL} alt="공연이미지" />
+            <Styled.RankingFlag ranking={show.id}>{show.id}</Styled.RankingFlag>
+          </Styled.ShowImageContainer>
           <Styled.ShowContents>
             <Styled.ShowTitle>{show.title}</Styled.ShowTitle>
             <Styled.ShowInfomation>
@@ -59,14 +62,16 @@ const Styled = {
       border-bottom: 0.1rem solid rgba(51, 51, 51, 0.05);
     }
   `,
-  ShowImage: styled.img`
+  ShowImageContainer: styled.div`
+    position: relative;
     width: 11.1rem;
     height: 14.5rem;
-    background-color: ${theme.colors.grey_03};
+    background-color: ${theme.colors.grey_04};
     border-radius: 0.5rem;
     color: ${theme.colors.white};
     margin-left: 0.6rem;
   `,
+  ShowImage: styled.img``,
   ShowContents: styled.div`
     display: flex;
     flex-direction: column;
@@ -82,6 +87,7 @@ const Styled = {
     font-weight: ${theme.fontWeights.title03};
     width: 21rem;
   `,
+  ShowInfomation: styled.div``,
   ExclusiveFlag: styled.div`
     ${mixins.rowFlexBox}
     color: ${theme.colors.white};
@@ -90,8 +96,29 @@ const Styled = {
     height: 1.5rem;
     border-radius: 0.15rem;
   `,
-  ShowInfomation: styled.div``,
-  RankingFlag: styled.div``,
+  RankingFlag: styled.div`
+    ${mixins.rowFlexBox}
+    position: absolute;
+    width: 2.16rem;
+    height: 2.16rem;
+    ${({ ranking }) => {
+      if (ranking < 4) {
+        return css`
+          font-size: ${theme.fontSizes.title03};
+          font-weight: ${theme.fontWeights.title03};
+          background-color: ${theme.colors.grey_01};
+          top: -0.2rem;
+          left: -0.2rem;
+        `;
+      }
+      return css`
+        top: 0;
+        left: 0;
+        background-color: #858585;
+        border-radius: 0.5rem;
+      `;
+    }}
+  `,
   ShowPeriod: styled.p`
     font-size: ${theme.fontSizes.body02};
     font-weight: ${theme.fontWeights.body02};
