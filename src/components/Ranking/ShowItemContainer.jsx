@@ -9,7 +9,16 @@ function ShowItemContainer({ showData, pickedCategoryId }) {
         <Styled.ShowItem key={show.id} showType={show.showType} pickedCategoryId={pickedCategoryId}>
           <Styled.ShowImageContainer>
             <Styled.ShowImage src={show.imageURL} alt="공연이미지" />
-            <Styled.RankingFlag ranking={show.id}>{show.id}</Styled.RankingFlag>
+
+            {pickedCategoryId !== 0 ? (
+              <Styled.RankingFlag ranking={show.id} pickedCategoryId={pickedCategoryId}>
+                1
+              </Styled.RankingFlag>
+            ) : (
+              <Styled.RankingFlag ranking={show.id} pickedCategoryId={pickedCategoryId}>
+                {show.id}
+              </Styled.RankingFlag>
+            )}
           </Styled.ShowImageContainer>
           <Styled.ShowContents>
             <Styled.ShowTitle>{show.title}</Styled.ShowTitle>
@@ -48,7 +57,7 @@ const Styled = {
       position: absolute;
       left: 1.3rem;
       bottom: 0;
-      width: 90%;
+      width: 92%;
       height: 0.01rem;
       border-bottom: 0.1rem solid rgba(51, 51, 51, 0.04);
     }
@@ -58,7 +67,7 @@ const Styled = {
           display: none;
         `;
       }
-      return css``;
+      return;
     }}
   `,
   ShowImageContainer: styled.div`
@@ -84,7 +93,7 @@ const Styled = {
   ShowTitle: styled.h1`
     font-size: ${theme.fontSizes.title03};
     font-weight: ${theme.fontWeights.title03};
-    width: 21rem;
+    width: 20rem;
   `,
   ShowInfomation: styled.div``,
   ExclusiveFlag: styled.div`
@@ -100,8 +109,8 @@ const Styled = {
     position: absolute;
     width: 2.16rem;
     height: 2.16rem;
-    ${({ ranking }) => {
-      if (ranking < 4) {
+    ${({ ranking, pickedCategoryId }) => {
+      if (ranking < 4 || pickedCategoryId !== 0) {
         return css`
           font-size: ${theme.fontSizes.title03};
           font-weight: ${theme.fontWeights.title03};
