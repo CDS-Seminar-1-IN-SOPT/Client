@@ -1,12 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
 function ShowItemContainer({ showData, pickedCategoryId }) {
+  const navigate = useNavigate();
+
+  const goToFeed = () => {
+    navigate(`/feed`);
+  };
+
   return (
     <Styled.Root>
       {showData.map((show) => (
-        <Styled.ShowItem key={show.id} showType={show.showType} pickedCategoryId={pickedCategoryId}>
+        <Styled.ShowItem key={show.id} showType={show.showType} pickedCategoryId={pickedCategoryId} onClick={goToFeed}>
           <Styled.ShowImageContainer>
             <Styled.ShowImage src={show.imageURL} alt="공연이미지" />
 
@@ -57,7 +64,7 @@ const Styled = {
       position: absolute;
       left: 1.3rem;
       bottom: 0;
-      width: 92%;
+      width: 90%;
       height: 0.01rem;
       border-bottom: 0.1rem solid rgba(51, 51, 51, 0.04);
     }
@@ -86,7 +93,7 @@ const Styled = {
     justify-content: space-between;
     width: 23rem;
     height: 14.5rem;
-    padding-left: 1.3rem;
+    padding-left: 1.4rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   `,
