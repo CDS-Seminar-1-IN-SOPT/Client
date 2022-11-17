@@ -42,7 +42,7 @@ const Styled = {
     position: absolute;
     width: 37.5rem;
     height: 17rem;
-    left: 0.1rem;
+    left: 0.4rem;
     top: 16.5rem;
     margin: 0 auto;
   `,

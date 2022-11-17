@@ -27,7 +27,7 @@ const Styled = {
     position: absolute;
     width: 34.8rem;
     height: 3.5rem;
-    left: 1.7rem;
+    left: 2rem;
     top: 9.4rem;
   `,
   List: styled.ul`

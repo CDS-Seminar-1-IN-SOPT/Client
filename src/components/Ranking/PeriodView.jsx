@@ -16,7 +16,7 @@ const Styled = {
   Root: styled.div`
     ${mixins.rowFlexBox}
     position: absolute;
-    left: 2.1rem;
+    left: 2rem;
     top: 14.7rem;
   `,
   Period: styled.p`

@@ -39,7 +39,7 @@ const Styled = {
     position: absolute;
     width: 34rem;
     height: 4.1rem;
-    left: 1.7rem;
+    left: 2rem;
     top: 4.5rem;
     border-radius: 0.5rem;
   `,
