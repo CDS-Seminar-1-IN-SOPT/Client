@@ -59,7 +59,7 @@ const Styled = {
       bottom: 0;
       width: 90%;
       height: 0.01rem;
-      border-bottom: 0.1rem solid rgba(51, 51, 51, 0.05);
+      border-bottom: 0.1rem solid rgba(51, 51, 51, 0.04);
     }
   `,
   ShowImageContainer: styled.div`
