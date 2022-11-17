@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
 function PeriodView() {
-  // const [showData, setShowData] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('/show')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setShowData(data);
-  //     });
-  // }, []);
-
   return (
     <Styled.Root>
       <Styled.Period>2022. 11. 05 ~ 현재 16:30까지</Styled.Period>

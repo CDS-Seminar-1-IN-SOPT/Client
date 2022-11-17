@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 function ShowItemContainer() {
+  const [showData, setShowData] = useState([]);
+
+  useEffect(() => {
+    fetch('/show')
+      .then((res) => res.json())
+      .then((data) => {
+        setShowData(data.showList);
+      });
+  }, []);
+
   return (
     <Styled.Root>
-      <h1>아이템 목록 컴포넌트 입니다.</h1>
+      {showData.map((show) => (
+        <Styled.ShowItem key={show.id}>{show.id}</Styled.ShowItem>
+      ))}
     </Styled.Root>
   );
 }
@@ -12,5 +24,18 @@ function ShowItemContainer() {
 export default ShowItemContainer;
 
 const Styled = {
-  Root: styled.div``,
+  Root: styled.section`
+    position: absolute;
+    width: 37.5rem;
+    height: 17rem;
+    left: 1.5rem;
+    top: 15.5rem;
+  `,
+  ShowItem: styled.div``,
+  ShowImage: styled.img``,
+  ShowTitle: styled.h1``,
+  ExclusiveFlag: styled.div``,
+  RankingFlage: styled.div``,
+  ShowPeriod: styled.p``,
+  ShowMemberRecruit: styled.p``,
 };
