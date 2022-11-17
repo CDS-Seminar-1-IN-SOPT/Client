@@ -22,7 +22,7 @@ export default Header;
 
 const Styled = {
   Root: styled.div`
-    width: 37.5rem;
+    width: 100%;
     height: 4rem;
   `,
   Title: styled.div`
