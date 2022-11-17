@@ -24,12 +24,10 @@ export default Navbar;
 
 const Styled = {
   Root: styled.div`
-    font-size: ${theme.fontSizes.body02};
-    font-weight: ${theme.fontWeights.body02};
     position: absolute;
     width: 34.8rem;
     height: 3.5rem;
-    left: 1.3rem;
+    left: 1.7rem;
     top: 9.4rem;
   `,
   List: styled.ul`
@@ -38,12 +36,17 @@ const Styled = {
   `,
   Item: styled.li`
     ${mixins.rowFlexBox};
+    font-size: ${theme.fontSizes.body02};
+    font-weight: ${theme.fontWeights.body02};
+    color: ${theme.colors.grey_01};
     width: 100%;
     height: 3.5rem;
     border-bottom: 0.1rem solid ${theme.colors.grey_04};
+    cursor: pointer;
     ${({ isPicked }) =>
       isPicked &&
       css`
+        font-size: ${theme.fontSizes.body01};
         font-weight: ${theme.fontWeights.body01};
         border-bottom: 0.3em solid ${theme.colors.black};
         height: 3.55rem;
