@@ -17,9 +17,9 @@ function AngelTicket({ angelData }) {
       <Styled.AngelTicketList>
         {angelData.map((v) => (
           <Styled.AngelTicketBox key={v}>
-            <Styled.AngelTicketImg key={v.imageURl} src={v.imageURL} />
-            <Styled.AngelTicektSub key={v.title}>{v.title}</Styled.AngelTicektSub>
-            <Styled.AngelTicketSale key={v.discountRate}>{v.discountRate}%</Styled.AngelTicketSale>
+            <Styled.AngelTicketImg src={v.imageURL} />
+            <Styled.AngelTicektSub>{v.title}</Styled.AngelTicektSub>
+            <Styled.AngelTicketSale>{v.discountRate}%</Styled.AngelTicketSale>
           </Styled.AngelTicketBox>
         ))}
       </Styled.AngelTicketList>

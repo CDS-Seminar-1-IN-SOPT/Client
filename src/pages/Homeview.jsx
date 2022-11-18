@@ -1,7 +1,7 @@
 import AngelTicket from 'components/Home/Content/AngelTicket';
 import GenreChoice from 'components/Home/Content/GenreChoice';
 import RealtimeRank from 'components/Home/Content/RealtimeRank';
-import Recommend from 'components/Home/Content/Recommend';
+import RecommendTicket from 'components/Home/Content/RecommendTicket';
 import TicketSlider from 'components/Home/Content/TicketSlider';
 import useAPI from 'cores/hooks/useAPI';
 
@@ -18,7 +18,7 @@ function Home() {
           <GenreChoice />
           <RealtimeRank ticketData={homeData.rankList} />
           <AngelTicket angelData={homeData.angelTicketList} />
-          <Recommend />
+          <RecommendTicket />
         </>
       )}
     </>
