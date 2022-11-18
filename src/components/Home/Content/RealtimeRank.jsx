@@ -48,9 +48,12 @@ const Styled = {
     padding: 0 1.75rem 0 1.75rem;
     margin-top: 2.7rem;
     display: flex;
+    max-height: 14.2rem;
   `,
   RealtimeLink: styled.img``,
-  RankDiv: styled.div``,
+  RankDiv: styled.div`
+    max-height: 14.2rem;
+  `,
   RealtimeImg: styled.img`
     width: 10.8rem;
     height: 14.2rem;
