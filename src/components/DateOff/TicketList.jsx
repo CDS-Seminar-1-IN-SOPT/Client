@@ -8,7 +8,7 @@ function TicketList() {
   return (
     <Styled.Root>
       <Styled.TicketBlock>
-        <Styled.TicketTitle>뮤지컬 [모달리아니]</Styled.TicketTitle>
+        <Styled.TicketTitle>11/18일 뮤지컬 [모달리아니]</Styled.TicketTitle>
       </Styled.TicketBlock>
       <TicketItem />
       <TicketItem />
