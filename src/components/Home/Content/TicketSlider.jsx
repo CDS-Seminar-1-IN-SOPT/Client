@@ -1,7 +1,7 @@
+import btn_search from 'assets/buttons/btn_search.svg';
 import styled, { createGlobalStyle } from 'styled-components';
 import { EffectCoverflow, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -22,40 +22,46 @@ function TicketSlider({ bannerData }) {
   `;
 
   return (
-    <Styled.TicketSlider>
-      <SwiperStyle />
-      <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={1.5}
-        spaceBetween={30}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 140,
-          modifier: 1.5,
-          slideShadows: false,
-        }}
-        loop={true}
-        pagination={{
-          clickable: true,
-          styled: Styled.SwiperPagination,
-        }}
-        modules={[EffectCoverflow, Pagination]}
-        navigation={true}
-        className="mySwiper">
-        {bannerData.map((v) => (
-          <Styled.Swiper key={v.id}>
-            <Styled.SwieperImg key={v.url} src="https://swiperjs.com/demos/images/nature-2.jpg" />
-          </Styled.Swiper>
-        ))}
-      </Swiper>
-    </Styled.TicketSlider>
+    <>
+      <Styled.SearchInput src={btn_search} />
+      <Styled.TicketSlider>
+        <SwiperStyle />
+        <Swiper
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={1.5}
+          spaceBetween={30}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 140,
+            modifier: 1.5,
+            slideShadows: false,
+          }}
+          loop={true}
+          pagination={{
+            clickable: true,
+            styled: Styled.SwiperPagination,
+          }}
+          modules={[EffectCoverflow, Pagination]}
+          navigation={true}
+          className="mySwiper">
+          {bannerData.map((v) => (
+            <Styled.Swiper key={v.id}>
+              <Styled.SwieperImg key={v.url} src="https://swiperjs.com/demos/images/nature-2.jpg" />
+            </Styled.Swiper>
+          ))}
+        </Swiper>
+      </Styled.TicketSlider>
+    </>
   );
 }
 
 const Styled = {
+  SearchInput: styled.img`
+    margin: 1.9rem 4.8rem 2.4rem 4.8rem;
+  `,
   TicketSlider: styled.section`
     overflow: hidden;
     height: 266px;
