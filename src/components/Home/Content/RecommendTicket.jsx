@@ -9,10 +9,10 @@ function RecommendTicket() {
       </Styled.RecommendInfo>
       <Styled.GenreLists>
         <Styled.GenreBox>로맨스</Styled.GenreBox>
-        <Styled.GenreBox>공포</Styled.GenreBox>
-        <Styled.GenreBox>코믹</Styled.GenreBox>
-        <Styled.GenreBox>미스터리</Styled.GenreBox>
-        <Styled.GenreBox>퍼포먼스</Styled.GenreBox>
+        <Styled.UnchoicedGenreBox>공포</Styled.UnchoicedGenreBox>
+        <Styled.UnchoicedGenreBox>코믹</Styled.UnchoicedGenreBox>
+        <Styled.UnchoicedGenreBox>미스터리</Styled.UnchoicedGenreBox>
+        <Styled.UnchoicedGenreBox>퍼포먼스</Styled.UnchoicedGenreBox>
       </Styled.GenreLists>
       <Styled.RecommendTicekt>
         <Styled.RecommendImg src="ss" />
@@ -68,6 +68,22 @@ const Styled = {
     align-items: center;
     text-align: center;
     border-bottom: 0.2rem solid #333333;
+  `,
+  UnchoicedGenreBox: styled.div`
+    width: 20%;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: rgba(51, 51, 51, 0.4);
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-bottom: 0.2rem solid rgba(51, 51, 51, 0.4);
   `,
   RecommendTicekt: styled.div`
     width: 100%;
