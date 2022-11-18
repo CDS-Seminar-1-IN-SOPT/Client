@@ -2,24 +2,24 @@ import prev from 'assets/Icons/icn_back_m.svg';
 import next from 'assets/Icons/icn_foward_m.svg';
 import { format } from 'date-fns';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { mixins, theme } from 'styles/theme';
 
 function CalendarHeader({ currentMonth, prevMonth, nextMonth }) {
   return (
     <Styled.Root>
-      <Styled.PrevButton>
-        <Styled.PrevImage src={prev} alt="prev" onClick={prevMonth} />
-      </Styled.PrevButton>
+      <Styled.MoveButton prev>
+        <Styled.Image src={prev} alt="prev" onClick={prevMonth} />
+      </Styled.MoveButton>
       <Styled.NowDate>
         <Styled.NowYear>{format(currentMonth, 'M')}월</Styled.NowYear>
         <Styled.NowMonth>
           <Styled.NowMonth>{format(currentMonth, 'yyyy')}</Styled.NowMonth>
         </Styled.NowMonth>
       </Styled.NowDate>
-      <Styled.NextButton>
-        <Styled.NextImage src={next} alt="next" onClick={nextMonth} />
-      </Styled.NextButton>
+      <Styled.MoveButton next>
+        <Styled.Image src={next} alt="next" onClick={nextMonth} />
+      </Styled.MoveButton>
     </Styled.Root>
   );
 }
@@ -52,32 +52,28 @@ const Styled = {
     color: ${theme.colors.grey_02};
     height: 1.5rem;
   `,
-  PrevButton: styled.button`
+  MoveButton: styled.button`
     position: absolute;
     width: 3.2rem;
     height: 3.2rem;
     top: 2.6rem;
-    left: 8.7rem;
     ${mixins.rowFlexBox}
     border-radius: 0.8rem;
     border: 0.945914px solid ${theme.colors.grey_04};
     background-color: ${theme.colors.white};
+
+    ${(props) =>
+      props.prev &&
+      css`
+        left: 8.7rem;
+      `}
+    ${(props) =>
+      props.next &&
+      css`
+        right: 8.8rem;
+      `}
   `,
-  PrevImage: styled.img`
-    color: ${theme.colors.grey_01};
-  `,
-  NextButton: styled.button`
-    position: absolute;
-    width: 3.2rem;
-    height: 3.2rem;
-    top: 2.6rem;
-    right: 8.8rem;
-    ${mixins.rowFlexBox}
-    border-radius: 0.8rem;
-    border: 0.945914px solid ${theme.colors.grey_04};
-    background-color: ${theme.colors.white};
-  `,
-  NextImage: styled.img`
+  Image: styled.img`
     color: ${theme.colors.grey_01};
   `,
 };

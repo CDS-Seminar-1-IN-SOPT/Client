@@ -47,26 +47,28 @@ function CalendarBody({ currentMonth }) {
     <>
       <Styled.Root>
         <Styled.Table>
-          <thead>
-            <tr>
-              <Styled.TdSun>일</Styled.TdSun>
+          <Styled.Thead>
+            <Styled.Tr>
+              <Styled.Td sun>일</Styled.Td>
               {DATES.map((date, idx) => (
-                <Styled.TdDates key={idx}>{date}</Styled.TdDates>
+                <Styled.Td dates key={idx}>
+                  {date}
+                </Styled.Td>
               ))}
-              <Styled.TdSat>토</Styled.TdSat>
-            </tr>
-          </thead>
-          <tbody>
+              <Styled.Td sat>토</Styled.Td>
+            </Styled.Tr>
+          </Styled.Thead>
+          <Styled.Tbody>
             {rows.map((row, idx) => (
-              <tr key={idx}>
+              <Styled.Tr key={idx}>
                 {row.props.children.map((r, idx) => (
                   <Styled.Td key={idx} disabled={r.props.className === 'disabled'}>
                     {r.props.children.props.children}
                   </Styled.Td>
                 ))}
-              </tr>
+              </Styled.Tr>
             ))}
-          </tbody>
+          </Styled.Tbody>
         </Styled.Table>
       </Styled.Root>
       <Styled.TicketingBlock />
@@ -95,6 +97,9 @@ const Styled = {
     height: 25.8rem;
     position: relative;
   `,
+  Thead: styled.thead``,
+  Tr: styled.tr``,
+  Tbody: styled.tbody``,
   Td: styled.td`
     padding: 0.3rem;
     width: 12rem;
@@ -110,33 +115,22 @@ const Styled = {
       css`
         color: ${theme.colors.grey_02};
       `}
-  `,
-  TdDates: styled.td`
-    padding: 0.3rem;
-    width: 12rem;
-    height: 1rem;
-    text-align: center;
-    font-weight: ${theme.fontWeights.title03};
-    font-size: ${theme.fontSizes.title03};
-    color: ${theme.colors.grey_02};
-  `,
-  TdSun: styled.td`
-    padding: 0.3rem;
-    width: 12rem;
-    height: 1rem;
-    text-align: center;
-    font-weight: ${theme.fontWeights.title03};
-    font-size: ${theme.fontSizes.title03};
-    color: ${theme.colors.red};
-  `,
-  TdSat: styled.td`
-    padding: 0.3rem;
-    width: 12rem;
-    height: 1rem;
-    text-align: center;
-    font-weight: ${theme.fontWeights.title03};
-    font-size: ${theme.fontSizes.title03};
-    color: ${theme.colors.purple};
+
+    ${(props) =>
+      props.dates &&
+      css`
+        color: ${theme.colors.grey_02};
+      `}
+    ${(props) =>
+      props.sun &&
+      css`
+        color: ${theme.colors.red};
+      `}
+    ${(props) =>
+      props.sat &&
+      css`
+        color: ${theme.colors.purple};
+      `}
   `,
   TicketingBlock: styled.div`
     position: absolute;
