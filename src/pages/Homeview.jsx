@@ -16,7 +16,7 @@ function Home() {
         <>
           <TicketSlider bannerData={homeData.bannerList} />
           <GenreChoice />
-          <RealtimeRank />
+          <RealtimeRank ticketData={homeData.rankList} />
           <AngelTicket />
           <Recommend />
         </>
