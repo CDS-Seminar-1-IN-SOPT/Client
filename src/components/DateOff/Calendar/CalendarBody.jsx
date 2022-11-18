@@ -1,9 +1,10 @@
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, format, isSameMonth } from 'date-fns';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { mixins, theme } from 'styles/theme';
+import { theme } from 'styles/theme';
 
 const DATES = ['월', '화', '수', '목', '금'];
+const MOVIE = ['01', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
 
 function CalendarBody({ currentMonth }) {
   const monthStart = startOfMonth(currentMonth);
@@ -14,6 +15,14 @@ function CalendarBody({ currentMonth }) {
   let days = [];
   let day = startDate;
   let formattedDate = '';
+
+  for (let i = 0; i < MOVIE.length; i++) {
+    if (MOVIE[i].charAt(0) === '0') {
+      let temp = MOVIE[i];
+      MOVIE.splice(i, 1);
+      MOVIE.push(temp.replace(/(^0+)/, ''));
+    }
+  }
 
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
@@ -62,9 +71,15 @@ function CalendarBody({ currentMonth }) {
             {rows.map((row, idx) => (
               <Styled.Tr key={idx}>
                 {row.props.children.map((r, idx) => (
-                  <Styled.Td key={idx} disabled={r.props.className === 'disabled'}>
-                    {r.props.children.props.children}
-                  </Styled.Td>
+                  <>
+                    <Styled.Td
+                      key={idx}
+                      disabled={r.props.className === 'disabled'}
+                      movie={MOVIE.includes(r.props.children.props.children)}>
+                      {r.props.children.props.children}
+                      {MOVIE.includes(r.props.children.props.children) && <div />}
+                    </Styled.Td>
+                  </>
                 ))}
               </Styled.Tr>
             ))}
@@ -83,14 +98,6 @@ export default CalendarBody;
 
 const Styled = {
   Root: styled.div``,
-  DateItem: styled.div`
-    width: 3.5rem;
-    ${mixins.rowFlexBox}
-    margin-right: 1rem;
-    font-size: ${theme.fontSizes.title03};
-    font-weight: ${theme.fontWeights.title03};
-    color: ${theme.colors.grey_01};
-  `,
   Table: styled.table`
     border-collapse: collapse;
     width: 100%;
@@ -101,19 +108,19 @@ const Styled = {
   Tr: styled.tr``,
   Tbody: styled.tbody``,
   Td: styled.td`
-    padding: 0.3rem;
-    width: 12rem;
-    height: 1rem;
     text-align: center;
     font-weight: ${theme.fontWeights.title03};
     font-size: ${theme.fontSizes.title03};
-    color: ${theme.colors.grey_01};
+    color: ${theme.colors.grey_03};
     vertical-align: middle;
+    cursor: pointer;
+    position: relative;
 
     ${(props) =>
       props.disabled &&
       css`
         color: ${theme.colors.grey_02};
+        opacity: 0;
       `}
 
     ${(props) =>
@@ -131,6 +138,22 @@ const Styled = {
       css`
         color: ${theme.colors.purple};
       `}
+
+      ${(props) =>
+      props.movie &&
+      css`
+        color: ${theme.colors.grey_01};
+      `}
+
+      div {
+      position: absolute;
+      left: 2.2rem;
+      top: 3.3rem;
+      width: 10px;
+      height: 10px;
+      background-color: ${theme.colors.pink};
+      border-radius: 50%;
+    }
   `,
   TicketingBlock: styled.div`
     position: absolute;
