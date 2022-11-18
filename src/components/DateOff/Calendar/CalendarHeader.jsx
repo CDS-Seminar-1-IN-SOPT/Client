@@ -5,20 +5,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { mixins, theme } from 'styles/theme';
 
-function CalendarHeader() {
+function CalendarHeader({ currentMonth, prevMonth, nextMonth }) {
   return (
     <Styled.Root>
       <Styled.PrevButton>
-        <Styled.PrevImage src={prev} alt="prev" />
+        <Styled.PrevImage src={prev} alt="prev" onClick={prevMonth} />
       </Styled.PrevButton>
       <Styled.NowDate>
-        <Styled.NowYear>{format(new Date(), 'M')}월</Styled.NowYear>
+        <Styled.NowYear>{format(currentMonth, 'M')}월</Styled.NowYear>
         <Styled.NowMonth>
-          <Styled.NowMonth>{format(new Date(), 'yyyy')}</Styled.NowMonth>
+          <Styled.NowMonth>{format(currentMonth, 'yyyy')}</Styled.NowMonth>
         </Styled.NowMonth>
       </Styled.NowDate>
       <Styled.NextButton>
-        <Styled.NextImage src={next} alt="next" />
+        <Styled.NextImage src={next} alt="next" onClick={nextMonth} />
       </Styled.NextButton>
     </Styled.Root>
   );
@@ -63,7 +63,9 @@ const Styled = {
     border: 0.945914px solid ${theme.colors.grey_04};
     background-color: ${theme.colors.white};
   `,
-  PrevImage: styled.img``,
+  PrevImage: styled.img`
+    color: ${theme.colors.grey_01};
+  `,
   NextButton: styled.button`
     position: absolute;
     width: 3.2rem;
@@ -75,5 +77,7 @@ const Styled = {
     border: 0.945914px solid ${theme.colors.grey_04};
     background-color: ${theme.colors.white};
   `,
-  NextImage: styled.img``,
+  NextImage: styled.img`
+    color: ${theme.colors.grey_01};
+  `,
 };
