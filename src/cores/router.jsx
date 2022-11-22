@@ -6,7 +6,9 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/dateoff" element={<DateOffView />} />
+        <Route path="/dateoff/:scheduleId" element={<DateOffView />}>
+          <Route path=":date" element={<DateOffView />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
