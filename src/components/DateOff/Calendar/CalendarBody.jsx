@@ -1,5 +1,6 @@
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, format, isSameMonth } from 'date-fns';
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { theme } from 'styles/theme';
 
@@ -7,6 +8,8 @@ const DATES = ['월', '화', '수', '목', '금'];
 const MOVIE = ['01', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
 
 function CalendarBody({ currentMonth }) {
+  const navigate = useNavigate();
+  const { date } = useParams();
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
@@ -75,9 +78,10 @@ function CalendarBody({ currentMonth }) {
                     <Styled.Td
                       key={idx}
                       disabled={r.props.className === 'disabled'}
-                      movie={MOVIE.includes(r.props.children.props.children)}>
+                      movie={MOVIE.includes(r.props.children.props.children)}
+                      onClick={() => navigate(`/dateoff/${r.props.children.props.children}`)}>
                       {r.props.children.props.children}
-                      {MOVIE.includes(r.props.children.props.children) && <div />}
+                      {date === r.props.children.props.children && <Styled.Rectangle />}
                     </Styled.Td>
                   </>
                 ))}
@@ -120,7 +124,7 @@ const Styled = {
       props.disabled &&
       css`
         color: ${theme.colors.grey_02};
-        opacity: 0;
+        visibility: hidden;
       `}
 
     ${(props) =>
@@ -144,16 +148,15 @@ const Styled = {
       css`
         color: ${theme.colors.grey_01};
       `}
-
-      div {
-      position: absolute;
-      left: 2.2rem;
-      top: 3.3rem;
-      width: 10px;
-      height: 10px;
-      background-color: ${theme.colors.pink};
-      border-radius: 50%;
-    }
+  `,
+  Rectangle: styled.div`
+    position: absolute;
+    left: 2.4rem;
+    top: 2.8em;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: ${theme.colors.pink};
+    border-radius: 50%;
   `,
   TicketingBlock: styled.div`
     position: absolute;
