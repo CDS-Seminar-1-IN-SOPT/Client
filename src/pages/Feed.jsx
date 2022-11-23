@@ -6,7 +6,7 @@ import useAPI from 'cores/hooks/useAPI';
 import React from 'react';
 
 function Feed() {
-  const showDetail = useAPI('http://52.3.174.121:3000/show/2').data.data.show;
+  const showDetail = useAPI('http://52.3.174.121:3000/show/2').data;
 
   return (
     <>
@@ -15,8 +15,8 @@ function Feed() {
       ) : (
         <>
           <Header />
-          <ShowInfomationBox showDetail={showDetail} />
-          <ShowDetailBox castScheduleImageURL={showDetail.castScheduleImageURL} />
+          <ShowInfomationBox showDetail={showDetail.data.show} />
+          <ShowDetailBox castScheduleImageURL={showDetail.data.show.castScheduleImageURL} />
           <FooterMenu />
         </>
       )}
