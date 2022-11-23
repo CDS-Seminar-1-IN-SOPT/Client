@@ -7,19 +7,19 @@ import HomeviewHeader from 'components/Home/Header/HomeviewHeader';
 import useAPI from 'cores/hooks/useAPI';
 
 function Home() {
-  const homeData = useAPI('/show/home').data;
+  const homeData = useAPI('http://52.3.174.121:3000/show/home').data;
 
   return (
     <>
-      {homeData === null ? (
+      {homeData === undefined || homeData === null ? (
         <div>로딩중</div>
       ) : (
         <>
           <HomeviewHeader />
-          <TicketSlider bannerData={homeData.bannerList} />
+          <TicketSlider bannerData={homeData.data.bannerList} />
           <GenreChoice />
-          <RealtimeRank ticketData={homeData.rankList} />
-          <AngelTicket angelData={homeData.angelTicketList} />
+          <RealtimeRank ticketData={homeData.data.rankList} />
+          <AngelTicket angelData={homeData.data.angelTicketList} />
           <RecommendTicket />
         </>
       )}

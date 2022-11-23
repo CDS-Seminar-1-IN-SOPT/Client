@@ -7,8 +7,6 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 function TicketSlider({ bannerData }) {
-  // console.log(bannerData);
-
   const SwiperStyle = createGlobalStyle`
     .swiper-pagination-clickable{
     top:1.4rem;
