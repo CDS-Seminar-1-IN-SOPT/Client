@@ -1,17 +1,32 @@
-import React from 'react';
+import heart_off from 'assets/Icons/ic_heart_off.svg';
+import heart_on from 'assets/Icons/ic_heart_on.svg';
+import share from 'assets/Icons/ic_Share.svg';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme, mixins } from 'styles/theme';
 
 function FooterMenu() {
+  const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate();
 
   const goToPrevPage = () => {
     navigate(`/dateoff/:scheduleId`);
   };
+
+  const handleLike = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
     <Styled.Root>
-      <Styled.ButtonContainer />
+      <Styled.ButtonContainer>
+        <Styled.LikeMenuContainer onClick={handleLike}>
+          {isClicked ? <Styled.LikeIcon src={heart_on} /> : <Styled.LikeIcon src={heart_off} />}
+          <Styled.LikeCount isClicked={isClicked}>{isClicked ? 124 : 123}</Styled.LikeCount>
+        </Styled.LikeMenuContainer>
+        <Styled.ShareIcon src={share} alt="공유하기" />
+      </Styled.ButtonContainer>
       <Styled.TicketingButton onClick={goToPrevPage}>예매하기</Styled.TicketingButton>
     </Styled.Root>
   );
@@ -39,7 +54,36 @@ const Styled = {
     border: 0;
   `,
   ButtonContainer: styled.div`
+    ${mixins.rowFlexBox};
     background-color: ${theme.colors.white};
     width: 11.6rem;
+  `,
+  ShareIcon: styled.img`
+    width: 3.6rem;
+    height: 3.6rem;
+  `,
+  LikeMenuContainer: styled.div`
+    position: relative;
+    cursor: pointer;
+  `,
+  LikeIcon: styled.img`
+    width: 3.6rem;
+    height: 3.6rem;
+  `,
+  LikeCount: styled.p`
+    position: absolute;
+    width: 1.8rem;
+    height: 1.2rem;
+    left: 0.9rem;
+    top: 1.1rem;
+    z-index: 999;
+    color: black;
+    ${({ isClicked }) => {
+      if (isClicked) {
+        return `
+          color: ${theme.colors.white};
+        `;
+      }
+    }}
   `,
 };
