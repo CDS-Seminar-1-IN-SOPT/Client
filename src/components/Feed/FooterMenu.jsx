@@ -23,6 +23,9 @@ const Styled = {
   Root: styled.div`
     ${mixins.rowFlexBox};
     height: 6.4rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   `,
   TicketingButton: styled.button`
     ${mixins.rowFlexBox};
@@ -36,6 +39,7 @@ const Styled = {
     border: 0;
   `,
   ButtonContainer: styled.div`
+    background-color: ${theme.colors.white};
     width: 11.6rem;
   `,
 };
