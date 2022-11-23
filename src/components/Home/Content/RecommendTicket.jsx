@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 function RecommendTicket() {
+  const [currentGenre, setcurrentGenre] = useState(1);
+  const changeGenre = (e) => {
+    setcurrentGenre(e.target.id);
+  };
   return (
     <Styled.Recommend>
       <Styled.RecommendInfo>
@@ -8,11 +13,41 @@ function RecommendTicket() {
         이런 공연은 어떠세요?
       </Styled.RecommendInfo>
       <Styled.GenreLists>
-        <Styled.GenreBox>로맨스</Styled.GenreBox>
-        <Styled.UnchoicedGenreBox>공포</Styled.UnchoicedGenreBox>
-        <Styled.UnchoicedGenreBox>코믹</Styled.UnchoicedGenreBox>
-        <Styled.UnchoicedGenreBox>미스터리</Styled.UnchoicedGenreBox>
-        <Styled.UnchoicedGenreBox>퍼포먼스</Styled.UnchoicedGenreBox>
+        {currentGenre == 1 ? (
+          <Styled.GenreBox>로맨스</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={1} onClick={(e) => changeGenre(e)}>
+            로맨스
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 2 ? (
+          <Styled.GenreBox>공포</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={2} onClick={(e) => changeGenre(e)}>
+            공포
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 3 ? (
+          <Styled.GenreBox>코믹</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={3} onClick={(e) => changeGenre(e)}>
+            코믹
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 4 ? (
+          <Styled.GenreBox>미스터리</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={4} onClick={(e) => changeGenre(e)}>
+            미스터리
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 5 ? (
+          <Styled.GenreBox>퍼포먼스</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={5} onClick={(e) => changeGenre(e)}>
+            퍼포먼스
+          </Styled.UnchoicedGenreBox>
+        )}
       </Styled.GenreLists>
       <Styled.RecommendTicekt>
         <Styled.RecommendImg src="ss" />
