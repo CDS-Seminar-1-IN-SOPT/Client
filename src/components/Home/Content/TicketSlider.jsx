@@ -47,7 +47,7 @@ function TicketSlider({ bannerData }) {
           className="mySwiper">
           {bannerData.map((v) => (
             <Styled.Swiper key={v.id}>
-              <Styled.SwieperImg key={v.url} src="https://swiperjs.com/demos/images/nature-2.jpg" />
+              <Styled.SwieperImg key={v.url} src={v.imageURL} />
             </Styled.Swiper>
           ))}
         </Swiper>
