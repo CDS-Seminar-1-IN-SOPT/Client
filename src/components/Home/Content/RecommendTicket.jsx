@@ -1,11 +1,21 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 function RecommendTicket() {
   const [currentGenre, setcurrentGenre] = useState(1);
+  const [showData, setshowData] = useState([]);
   const changeGenre = (e) => {
     setcurrentGenre(e.target.id);
   };
+  const getShowData = async () => {
+    const data = await axios.get(`http://52.3.174.121:3000/show/genre?genreId=${currentGenre}`);
+    setshowData(data.data.data.showList);
+  };
+  useEffect(() => {
+    getShowData();
+  }, [currentGenre]);
+
   return (
     <Styled.Recommend>
       <Styled.RecommendInfo>
@@ -49,22 +59,17 @@ function RecommendTicket() {
           </Styled.UnchoicedGenreBox>
         )}
       </Styled.GenreLists>
-      <Styled.RecommendTicekt>
-        <Styled.RecommendImg src="ss" />
-        <Styled.RecoommedDate>예매 시간 2022.10.31~2022.11.06</Styled.RecoommedDate>
-        <Styled.TicektInfo>
-          <Styled.RecommendGenre>뮤지컬</Styled.RecommendGenre>
-          <Styled.RecommendTitle>우리가 사랑했던 그날</Styled.RecommendTitle>
-        </Styled.TicektInfo>
-      </Styled.RecommendTicekt>
-      <Styled.RecommendTicekt>
-        <Styled.RecommendImg src="ss" />
-        <Styled.RecoommedDate>예매 시간 2022.10.31~2022.11.06</Styled.RecoommedDate>
-        <Styled.TicektInfo>
-          <Styled.RecommendGenre>뮤지컬</Styled.RecommendGenre>
-          <Styled.RecommendTitle>우리가 사랑했던 그날</Styled.RecommendTitle>
-        </Styled.TicektInfo>
-      </Styled.RecommendTicekt>
+
+      {showData.map((ticket, index) => (
+        <Styled.RecommendTicekt key={ticket.title}>
+          <Styled.RecommendImg key={ticket.imageURL} src={ticket.imageURL} />
+          <Styled.RecoommedDate key={ticket.reservationStartAt}>예매 시간 2022.10.31~2022.11.06</Styled.RecoommedDate>
+          <Styled.TicektInfo>
+            <Styled.RecommendGenre key={ticket.showType}>{ticket.showType}</Styled.RecommendGenre>
+            <Styled.RecommendTitle key={ticket.title}>{ticket.title}</Styled.RecommendTitle>
+          </Styled.TicektInfo>
+        </Styled.RecommendTicekt>
+      ))}
     </Styled.Recommend>
   );
 }
@@ -103,6 +108,7 @@ const Styled = {
     align-items: center;
     text-align: center;
     border-bottom: 0.2rem solid #333333;
+    cursor: pointer;
   `,
   UnchoicedGenreBox: styled.div`
     width: 20%;
@@ -114,7 +120,7 @@ const Styled = {
     font-size: 12px;
     line-height: 15px;
     color: rgba(51, 51, 51, 0.4);
-
+    cursor: pointer;
     display: flex;
     align-items: center;
     text-align: center;
