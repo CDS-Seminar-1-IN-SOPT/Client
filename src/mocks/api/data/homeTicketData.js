@@ -28,33 +28,33 @@ export const homeTicketData = {
   rankList: [
     {
       id: 5,
-      imageURL: 'https://aws.s3.sfieifjs.regionsdfsdf',
+      imageURL: '',
     },
     {
       id: 3,
-      imageURL: 'https://aws.s3.sfieifjs.regisdafasdf2',
+      imageURL: '',
     },
     {
       id: 8,
-      imageURL: 'https://aws.s3.sfieifjs.regiowqerqwerdf3',
+      imageURL: '',
     },
   ],
   angelTicketList: [
     {
       id: 5,
-      imageURL: 'https://aws.s3.sfieifjs.regionsdfsdf',
+      imageURL: '',
       title: '뮤지컬..여기는 중앙정렬',
       discountRate: 30,
     },
     {
       id: 3,
-      imageURL: 'https://aws.s3.sfieifjs.regisdafasdf2',
+      imageURL: '',
       title: '연극..영역 벗어나면...',
       discountRate: 20,
     },
     {
       id: 8,
-      imageURL: 'https://aws.s3.sfieifjs.regiowqerqwerdf3',
+      imageURL: '',
       title: '콘서트 .. 두줄로 안넘어감',
       discountRate: 40,
     },

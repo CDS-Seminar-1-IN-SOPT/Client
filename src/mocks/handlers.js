@@ -11,7 +11,7 @@ export const handlers = [
   rest.get('/genre?genreId=3', (_, response, context) => {
     return response(context.status(200), context.json(homeShowDataByGenre));
   }),
-  rest.get('/show/home', (_, response, context) => {
+  rest.get('/api/show/home', (_, response, context) => {
     return response(context.status(200), context.json(homeTicketData));
   }),
   rest.get('/show', (_, response, context) => {
