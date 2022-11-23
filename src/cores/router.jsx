@@ -11,8 +11,9 @@ function Router() {
         {/* <Route path="/" element={<Component />} /> */}
         <Route path="/home" element={<Homeview />} />
         <Route path="/ranking" element={<Ranking />} />
-        <Route path="/dateoff/:scheduleId" element={<DateOffView />} />
-        <Route path=":date" element={<DateOffView />} />
+        <Route path="/dateoff/:scheduleId" element={<DateOffView />}>
+          <Route path=":date" element={<DateOffView />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
