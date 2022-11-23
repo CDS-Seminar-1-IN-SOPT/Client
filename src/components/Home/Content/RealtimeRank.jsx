@@ -1,11 +1,16 @@
 import linkButton from 'assets/Icons/icn_foward_m.svg';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 function RealtimeRank({ ticketData }) {
+  const navigate = useNavigate();
+  const viewRanking = () => {
+    navigate('/ranking');
+  };
   return (
     <Styled.RealtimeRank>
       <Styled.RealtimeInfo>
         <Styled.RealtimeText>실시간 티켓 랭킹</Styled.RealtimeText>
-        <Styled.RealtimeLink src={linkButton} />
+        <Styled.RealtimeLink src={linkButton} onClick={() => viewRanking()} />
       </Styled.RealtimeInfo>
       <Styled.RealtimeRankList>
         <Styled.RankDiv>
@@ -50,7 +55,9 @@ const Styled = {
     display: flex;
     max-height: 14.2rem;
   `,
-  RealtimeLink: styled.img``,
+  RealtimeLink: styled.img`
+    cursor: pointer;
+  `,
   RankDiv: styled.div`
     max-height: 14.2rem;
   `,
