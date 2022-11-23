@@ -1,5 +1,6 @@
 import coupon_off from 'assets/buttons/btn_coupon_off.svg';
 import coupon_on from 'assets/buttons/btn_coupon_on.svg';
+import exclusiveFlag from 'assets/Icons/ic_only.svg';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme, mixins } from 'styles/theme';
@@ -13,8 +14,15 @@ function ShowInfomationBox({ showDetail }) {
 
   return (
     <Styled.Root>
-      <Styled.ShowTitleContaner />
-      <Styled.ShowInfoContainer>ㅎㅎㅎ</Styled.ShowInfoContainer>
+      <Styled.ShowTitleContaner>
+        <Styled.ShowImage src={showDetail.imageURL} />
+        <Styled.ShowTitleBox>
+          <Styled.ShowTitle>{showDetail.title}</Styled.ShowTitle>
+          <Styled.ExclusiveFlag src={exclusiveFlag} />
+          <Styled.ShowGanre>뮤지컬 | 7세 이상</Styled.ShowGanre>
+        </Styled.ShowTitleBox>
+      </Styled.ShowTitleContaner>
+      <Styled.ShowInfoContainer> 공연 정보는 여기에 들어가요</Styled.ShowInfoContainer>
       <Styled.CouponWrapper>
         {issued ? <Styled.Coupon src={coupon_on} /> : <Styled.Coupon src={coupon_off} onClick={getCoupon} />}
       </Styled.CouponWrapper>
@@ -28,8 +36,52 @@ const Styled = {
   Root: styled.div`
     width: 37.5rem;
   `,
-  ShowTitleContaner: styled.div``,
-  ShowTitle: styled.h1``,
+  ShowTitleContaner: styled.div`
+    position: relative;
+    width: 100%;
+    height: 15.7rem;
+    background: rgba(51, 51, 51, 0.04);
+  `,
+  ShowTitleBox: styled.div`
+    position: relative;
+    width: 18rem;
+  `,
+
+  ShowTitle: styled.h1`
+    color: ${theme.colors.grey_01};
+    font-size: ${theme.fontSizes.title02};
+    font-weight: ${theme.fontWeights.title02};
+    position: absolute;
+    width: 20.7rem;
+    height: 3.4rem;
+    left: 14.2rem;
+    top: 1.1rem;
+  `,
+  ShowImage: styled.img`
+    position: absolute;
+    width: 10.8rem;
+    height: 14.2rem;
+    left: 2.2rem;
+    top: 0.7rem;
+    border-radius: 0.5rem;
+  `,
+  ExclusiveFlag: styled.img`
+    position: absolute;
+    width: 2.4rem;
+    height: 2.4rem;
+    left: 14.2rem;
+    top: 10rem;
+  `,
+  ShowGanre: styled.p`
+    color: ${theme.colors.grey_03};
+    font-size: ${theme.fontSizes.body03};
+    font-weight: ${theme.fontWeights.body03};
+    position: absolute;
+    width: 7.3rem;
+    height: 1.2rem;
+    left: 14.2rem;
+    top: 13rem;
+  `,
   ShowInfoContainer: styled.div``,
   CouponWrapper: styled.div`
     ${mixins.rowFlexBox}
