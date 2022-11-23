@@ -16,6 +16,22 @@ function RecommendTicket() {
     getShowData();
   }, [currentGenre]);
 
+  const filterGenre = (showType) => {
+    switch (showType) {
+      case 1:
+        return '콘서트';
+      case 2:
+        return '뮤지컬';
+      case 3:
+        return '연극';
+      case 4:
+        return '클래식';
+      case 5:
+        return '전시회';
+      case 6:
+        return '어린이';
+    }
+  };
   return (
     <Styled.Recommend>
       <Styled.RecommendInfo>
@@ -65,7 +81,7 @@ function RecommendTicket() {
           <Styled.RecommendImg key={ticket.imageURL} src={ticket.imageURL} />
           <Styled.RecoommedDate key={ticket.reservationStartAt}>예매 시간 2022.10.31~2022.11.06</Styled.RecoommedDate>
           <Styled.TicektInfo>
-            <Styled.RecommendGenre key={ticket.showType}>{ticket.showType}</Styled.RecommendGenre>
+            <Styled.RecommendGenre key={ticket.showType}>{filterGenre(ticket.showType)}</Styled.RecommendGenre>
             <Styled.RecommendTitle key={ticket.title}>{ticket.title}</Styled.RecommendTitle>
           </Styled.TicektInfo>
         </Styled.RecommendTicekt>
