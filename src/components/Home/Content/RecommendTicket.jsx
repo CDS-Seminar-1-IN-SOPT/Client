@@ -32,6 +32,15 @@ function RecommendTicket() {
         return '어린이';
     }
   };
+  const filterDate = (reservation) => {
+    const date = new Date(reservation);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+
+    const dateString = year + '.' + month + '.' + day;
+    return dateString;
+  };
   return (
     <Styled.Recommend>
       <Styled.RecommendInfo>
@@ -79,7 +88,9 @@ function RecommendTicket() {
       {showData.map((ticket, index) => (
         <Styled.RecommendTicekt key={ticket.title}>
           <Styled.RecommendImg key={ticket.imageURL} src={ticket.imageURL} />
-          <Styled.RecoommedDate key={ticket.reservationStartAt}>예매 시간 2022.10.31~2022.11.06</Styled.RecoommedDate>
+          <Styled.RecoommedDate key={ticket.reservationStartAt}>
+            예매 시간 {filterDate(ticket.reservationStartAt)}~ {filterDate(ticket.reservationEndAt)}
+          </Styled.RecoommedDate>
           <Styled.TicektInfo>
             <Styled.RecommendGenre key={ticket.showType}>{filterGenre(ticket.showType)}</Styled.RecommendGenre>
             <Styled.RecommendTitle key={ticket.title}>{ticket.title}</Styled.RecommendTitle>
