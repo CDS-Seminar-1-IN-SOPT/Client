@@ -1,6 +1,7 @@
 import coupon_off from 'assets/buttons/btn_coupon_off.svg';
 import coupon_on from 'assets/buttons/btn_coupon_on.svg';
 import exclusiveFlag from 'assets/Icons/ic_only.svg';
+import fowardFlag from 'assets/Icons/icn_foward_s.svg';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme, mixins } from 'styles/theme';
@@ -24,11 +25,33 @@ function ShowInfomationBox({ showDetail }) {
       </Styled.ShowTitleContaner>
       <Styled.ShowInfoContainer>
         <Styled.ShowPeriod>
-          공연기간 {showDetail.showStartAt.slice(0, 10)}~{showDetail.showEndAt.slice(0, 10)}
+          <Styled.ShowPeriodTitle>공연기간</Styled.ShowPeriodTitle>
+          <Styled.ShowPeriodDescription>
+            {showDetail.showStartAt.slice(0, 10)}~{showDetail.showEndAt.slice(0, 10)}
+          </Styled.ShowPeriodDescription>
         </Styled.ShowPeriod>
-        <Styled.ShowRunningTime>관람시간 {showDetail.runningTime}</Styled.ShowRunningTime>
-        <Styled.ShowDate>공연일시 {showDetail.showTimeDiscription}</Styled.ShowDate>
-        <Styled.ShowPlace>공연장소 {showDetail.place}</Styled.ShowPlace>
+        <Styled.ShowRunningTime>
+          <Styled.ShowRunningTimeTitle>관람시간</Styled.ShowRunningTimeTitle>
+          <Styled.ShowRunningTimeDescription>{showDetail.runningTime}</Styled.ShowRunningTimeDescription>
+        </Styled.ShowRunningTime>
+        <Styled.ShowDate>
+          <Styled.ShowDateTitle>공연일시</Styled.ShowDateTitle>
+          <Styled.ShowDateDescription>
+            {showDetail.showTimeDiscription}
+            {showDetail.showTimeDiscription}
+            {showDetail.showTimeDiscription}
+            {showDetail.showTimeDiscription}
+          </Styled.ShowDateDescription>
+        </Styled.ShowDate>
+        <Styled.ShowPlace>
+          <Styled.ShowPlaceTitle>공연장소</Styled.ShowPlaceTitle>
+          <Styled.ShowPlaceDescriptionContainer>
+            <Styled.ShowPlaceDescription href="http://www.klarts.kr/use">
+              광림아트센터 BBCH홀
+            </Styled.ShowPlaceDescription>
+            <Styled.FowardFlag src={fowardFlag} />
+          </Styled.ShowPlaceDescriptionContainer>
+        </Styled.ShowPlace>
       </Styled.ShowInfoContainer>
       <Styled.CouponWrapper>
         {issued ? <Styled.Coupon src={coupon_on} /> : <Styled.Coupon src={coupon_off} onClick={getCoupon} />}
@@ -94,14 +117,63 @@ const Styled = {
     font-weight: ${theme.fontWeights.body02};
     color: ${theme.colors.grey_03};
     width: 100%;
-    height: 15rem;
+    height: 12.5rem;
+    padding-left: 2.2rem;
+    padding-top: 0.5rem;
   `,
-  ShowPeriod: styled.p``,
-  ShowRunningTime: styled.p``,
-  ShowPlace: styled.p``,
-  ShowDate: styled.p``,
+  ShowPeriod: styled.p`
+    display: flex;
+    margin-bottom: 1rem;
+  `,
+  ShowPeriodTitle: styled.div`
+    margin-right: 1.5rem;
+  `,
+  ShowPeriodDescription: styled.div``,
+  ShowRunningTime: styled.p`
+    display: flex;
+    margin-bottom: 1rem;
+  `,
+  ShowRunningTimeTitle: styled.div`
+    margin-right: 1.5rem;
+  `,
+  ShowRunningTimeDescription: styled.div``,
+  ShowPlace: styled.p`
+    display: flex;
+    margin-bottom: 1rem;
+  `,
+  ShowPlaceTitle: styled.div`
+    margin-right: 1.5rem;
+  `,
+  ShowPlaceDescriptionContainer: styled.div`
+    position: relative;
+    color: ${theme.colors.grey_01};
+    display: flex;
+  `,
+  ShowPlaceDescription: styled.a`
+    cursor: pointer;
+    color: ${theme.colors.grey_01};
+    text-decoration: none;
+  `,
+  ShowDate: styled.div`
+    display: flex;
+    margin-bottom: 1.5rem;
+  `,
+  ShowDateTitle: styled.div`
+    margin-right: 1.5rem;
+  `,
+  ShowDateDescription: styled.div`
+    width: 15.8rem;
+  `,
+  FowardFlag: styled.img`
+    position: absolute;
+    width: 2.4rem;
+    height: 2.4rem;
+    bottom: -0.6rem;
+    left: 10.8rem;
+  `,
   CouponWrapper: styled.div`
     ${mixins.rowFlexBox}
+    margin-bottom: 1.5rem;
   `,
   Coupon: styled.img``,
 };
