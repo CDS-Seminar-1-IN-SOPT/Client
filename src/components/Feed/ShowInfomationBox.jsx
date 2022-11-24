@@ -19,10 +19,17 @@ function ShowInfomationBox({ showDetail }) {
         <Styled.ShowTitleBox>
           <Styled.ShowTitle>{showDetail.title}</Styled.ShowTitle>
           <Styled.ExclusiveFlag src={exclusiveFlag} />
-          <Styled.ShowGanre>뮤지컬 | 7세 이상</Styled.ShowGanre>
+          <Styled.ShowGanre>뮤지컬 | {showDetail.ageLimit}</Styled.ShowGanre>
         </Styled.ShowTitleBox>
       </Styled.ShowTitleContaner>
-      <Styled.ShowInfoContainer> 공연 정보는 여기에 들어가요</Styled.ShowInfoContainer>
+      <Styled.ShowInfoContainer>
+        <Styled.ShowPeriod>
+          공연기간 {showDetail.showStartAt.slice(0, 10)}~{showDetail.showEndAt.slice(0, 10)}
+        </Styled.ShowPeriod>
+        <Styled.ShowRunningTime>관람시간 {showDetail.runningTime}</Styled.ShowRunningTime>
+        <Styled.ShowDate>공연일시 {showDetail.showTimeDiscription}</Styled.ShowDate>
+        <Styled.ShowPlace>공연장소 {showDetail.place}</Styled.ShowPlace>
+      </Styled.ShowInfoContainer>
       <Styled.CouponWrapper>
         {issued ? <Styled.Coupon src={coupon_on} /> : <Styled.Coupon src={coupon_off} onClick={getCoupon} />}
       </Styled.CouponWrapper>
@@ -82,7 +89,17 @@ const Styled = {
     left: 14.2rem;
     top: 13rem;
   `,
-  ShowInfoContainer: styled.div``,
+  ShowInfoContainer: styled.div`
+    font-size: ${theme.fontSizes.body02};
+    font-weight: ${theme.fontWeights.body02};
+    color: ${theme.colors.grey_03};
+    width: 100%;
+    height: 15rem;
+  `,
+  ShowPeriod: styled.p``,
+  ShowRunningTime: styled.p``,
+  ShowPlace: styled.p``,
+  ShowDate: styled.p``,
   CouponWrapper: styled.div`
     ${mixins.rowFlexBox}
   `,
