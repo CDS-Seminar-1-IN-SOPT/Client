@@ -2,8 +2,9 @@ import green from 'assets/Icons/ic_green.svg';
 import orange from 'assets/Icons/ic_orange.svg';
 import pink from 'assets/Icons/ic_pink.svg';
 import purple from 'assets/Icons/ic_purple.svg';
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import { useThemeObserver } from 'cores/hooks/useThemeObserver';
+import React, { useState, useRef } from 'react';
+import styled, { css } from 'styled-components';
 import { mixins, theme } from 'styles/theme';
 
 function ShowDetailBox({ castScheduleImageURL }) {
@@ -15,35 +16,48 @@ function ShowDetailBox({ castScheduleImageURL }) {
     { title: '리뷰', id: 5 },
   ];
 
-  const option = {};
-  const isRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entry) => {
-      if (entry[0].isIntersecting) {
-        console.log('여깁니다');
-      }
-    }, option);
-
-    if (isRef.current) {
-      observer.observe(isRef.current);
+  const selectMenu = (e) => {
+    if (e.target.innerText === '상세정보') {
+      setNavNumber(1);
     }
+    if (e.target.innerText === '캐스팅일정') {
+      setNavNumber(2);
+    }
+    if (e.target.innerText === '공연이미지') {
+      setNavNumber(3);
+    }
+    if (e.target.innerText === '공지사항') {
+      setNavNumber(4);
+    }
+    if (e.target.innerText === '리뷰') {
+      setNavNumber(5);
+    }
+  };
 
-    return () => observer.disconnect();
-  }, []);
+  const [navNumber, setNavNumber] = useState(1);
+
+  const [priceRef] = useThemeObserver(setNavNumber, 1);
+  const [castingRef] = useThemeObserver(setNavNumber, 2);
+  const [imageRef] = useThemeObserver(setNavNumber, 3);
+  const [noticeRef] = useThemeObserver(setNavNumber, 4);
+  const [reviewRef] = useThemeObserver(setNavNumber, 5);
 
   return (
     <Styled.Root>
       <Styled.NavBarWrapper>
         <Styled.NavBar>
           {menu.map((item) => {
-            return <Styled.NavBarItem key={item.id}>{item.title}</Styled.NavBarItem>;
+            return (
+              <Styled.NavBarItem onClick={selectMenu} key={item.id} border={item.id === navNumber}>
+                {item.title}
+              </Styled.NavBarItem>
+            );
           })}
         </Styled.NavBar>
       </Styled.NavBarWrapper>
       <Styled.DetailInfoContainer>
-        <Styled.TicketPriceContainer>
-          <Styled.TicketPriceTitle>티켓 등급별 가격</Styled.TicketPriceTitle>
+        <Styled.TicketPriceContainer isRef={priceRef}>
+          <Styled.TicketPriceTitle>티켓등급별 가격</Styled.TicketPriceTitle>
           <Styled.TicketPriceList>
             <Styled.TicketPriceItem>
               <Styled.PriceColorPicker src={orange} />
@@ -68,20 +82,21 @@ function ShowDetailBox({ castScheduleImageURL }) {
           </Styled.TicketPriceList>
         </Styled.TicketPriceContainer>
       </Styled.DetailInfoContainer>
-      <Styled.CastingContainer>
-        <Styled.CastingTitle>캐스팅 일정</Styled.CastingTitle>
+      <Styled.CastingContainer isRef={castingRef}>
+        <Styled.Title>캐스팅일정</Styled.Title>
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
       </Styled.CastingContainer>
-      <Styled.CastingContainer>
-        <Styled.CastingTitle>캐스팅 일정</Styled.CastingTitle>
+      <Styled.CastingContainer isRef={imageRef}>
+        <Styled.Title>공연이미지</Styled.Title>
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
       </Styled.CastingContainer>
-      <Styled.CastingContainer>
-        <Styled.CastingTitle>캐스팅 일정</Styled.CastingTitle>
+      <Styled.CastingContainer isRef={noticeRef}>
+        <Styled.Title>공지사항</Styled.Title>
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
       </Styled.CastingContainer>
-      <Styled.CastingContainer>
-        <Styled.CastingTitle>캐스팅 일정</Styled.CastingTitle>
+      <Styled.CastingContainer isRef={reviewRef}>
+        <Styled.Title>리뷰</Styled.Title>
+        <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
       </Styled.CastingContainer>
     </Styled.Root>
@@ -91,9 +106,7 @@ function ShowDetailBox({ castScheduleImageURL }) {
 export default ShowDetailBox;
 
 const Styled = {
-  Root: styled.div`
-    z-index: 3;
-  `,
+  Root: styled.div``,
   NavBarWrapper: styled.div`
     ${mixins.rowFlexBox};
     width: 100%;
@@ -117,6 +130,14 @@ const Styled = {
     padding: 0rem 1rem;
     border-bottom: 0.1rem solid ${theme.colors.grey_04};
     cursor: pointer;
+    ${({ border }) => {
+      if (border) {
+        return css`
+          color: black;
+          font-weight: 800;
+        `;
+      }
+    }}
   `,
   DetailInfoContainer: styled.div`
     padding: 1.8rem;
@@ -161,7 +182,7 @@ const Styled = {
     padding: 0 1.8rem 0 1.8rem;
     margin-bottom: 7rem;
   `,
-  CastingTitle: styled.h1`
+  Title: styled.h1`
     font-size: ${theme.fontSizes.title03};
     font-weight: ${theme.fontWeights.title02};
     color: ${theme.colors.grey_01};
