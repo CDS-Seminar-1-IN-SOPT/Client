@@ -64,18 +64,20 @@ const Styled = {
   `,
   LikeMenuContainer: styled.div`
     position: relative;
+    height: 6.4rem;
     cursor: pointer;
   `,
   LikeIcon: styled.img`
     width: 3.6rem;
     height: 3.6rem;
+    margin-top: 1.5rem;
   `,
   LikeCount: styled.p`
     position: absolute;
     width: 1.8rem;
     height: 1.2rem;
     left: 0.9rem;
-    top: 1.1rem;
+    top: 2.7rem;
     z-index: 999;
     color: black;
     ${({ isClicked }) => {

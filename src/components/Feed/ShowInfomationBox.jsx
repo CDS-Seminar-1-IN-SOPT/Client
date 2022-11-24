@@ -173,7 +173,6 @@ const Styled = {
   `,
   CouponWrapper: styled.div`
     ${mixins.rowFlexBox}
-    margin-bottom: 1.5rem;
   `,
   Coupon: styled.img``,
 };

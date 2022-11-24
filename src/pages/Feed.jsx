@@ -16,7 +16,7 @@ function Feed() {
         <>
           <Header />
           <ShowInfomationBox showDetail={showDetail.data.show} />
-          <ShowDetailBox />
+          <ShowDetailBox castScheduleImageURL={showDetail.data.show.castScheduleImageURL} />
           <FooterMenu />
         </>
       )}
