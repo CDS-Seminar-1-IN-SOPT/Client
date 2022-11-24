@@ -1,15 +1,13 @@
-import { getSchedule } from 'cores/api';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, format, isSameMonth } from 'date-fns';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { theme } from 'styles/theme';
 
 const DATES = ['월', '화', '수', '목', '금'];
 
-function CalendarBody({ currentMonth }) {
+function CalendarBody({ currentMonth, schedule }) {
   const navigate = useNavigate();
-  const [schedule, setSchedule] = useState([]);
   const { scheduleId, date } = useParams();
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
@@ -20,15 +18,6 @@ function CalendarBody({ currentMonth }) {
   let scheduleDate = [];
   let day = startDate;
   let formattedDate = '';
-
-  useEffect(() => {
-    const handleGetSchedule = async () => {
-      const response = await getSchedule(scheduleId);
-      setSchedule(response);
-    };
-
-    handleGetSchedule();
-  }, []);
 
   for (let i = 0; i < schedule?.scheduleList?.length; i++) {
     scheduleDate.push(schedule.scheduleList[i].startAt.slice(8, 10));
