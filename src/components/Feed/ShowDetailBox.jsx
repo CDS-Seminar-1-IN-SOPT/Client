@@ -3,7 +3,8 @@ import orange from 'assets/Icons/ic_orange.svg';
 import pink from 'assets/Icons/ic_pink.svg';
 import purple from 'assets/Icons/ic_purple.svg';
 import { useThemeObserver } from 'cores/hooks/useThemeObserver';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-scroll/modules';
 import styled, { css } from 'styled-components';
 import { mixins, theme } from 'styles/theme';
 
@@ -46,16 +47,34 @@ function ShowDetailBox({ castScheduleImageURL }) {
     <Styled.Root>
       <Styled.NavBarWrapper>
         <Styled.NavBar>
-          {menu.map((item) => {
-            return (
-              <Styled.NavBarItem onClick={selectMenu} key={item.id} border={item.id === navNumber}>
-                {item.title}
-              </Styled.NavBarItem>
-            );
-          })}
+          <Styled.NavBarItem border={navNumber === 1}>
+            <Link to="1" onClick={selectMenu}>
+              상세정보
+            </Link>
+          </Styled.NavBarItem>
+          <Styled.NavBarItem border={navNumber === 2}>
+            <Link to="2" onClick={selectMenu}>
+              캐스팅일정
+            </Link>
+          </Styled.NavBarItem>
+          <Styled.NavBarItem border={navNumber === 3}>
+            <Link to="3" onClick={selectMenu}>
+              공연이미지
+            </Link>
+          </Styled.NavBarItem>
+          <Styled.NavBarItem border={navNumber === 4}>
+            <Link to="4" onClick={selectMenu}>
+              공지사항
+            </Link>
+          </Styled.NavBarItem>
+          <Styled.NavBarItem border={navNumber === 5}>
+            <Link to="5" onClick={selectMenu}>
+              리뷰
+            </Link>
+          </Styled.NavBarItem>
         </Styled.NavBar>
       </Styled.NavBarWrapper>
-      <Styled.DetailInfoContainer>
+      <Styled.DetailInfoContainer id="1">
         <Styled.TicketPriceContainer isRef={priceRef}>
           <Styled.TicketPriceTitle>티켓등급별 가격</Styled.TicketPriceTitle>
           <Styled.TicketPriceList>
@@ -82,19 +101,19 @@ function ShowDetailBox({ castScheduleImageURL }) {
           </Styled.TicketPriceList>
         </Styled.TicketPriceContainer>
       </Styled.DetailInfoContainer>
-      <Styled.CastingContainer isRef={castingRef}>
+      <Styled.CastingContainer isRef={castingRef} id="2">
         <Styled.Title>캐스팅일정</Styled.Title>
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
       </Styled.CastingContainer>
-      <Styled.CastingContainer isRef={imageRef}>
+      <Styled.CastingContainer isRef={imageRef} id="3">
         <Styled.Title>공연이미지</Styled.Title>
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
       </Styled.CastingContainer>
-      <Styled.CastingContainer isRef={noticeRef}>
+      <Styled.CastingContainer isRef={noticeRef} id="4">
         <Styled.Title>공지사항</Styled.Title>
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
       </Styled.CastingContainer>
-      <Styled.CastingContainer isRef={reviewRef}>
+      <Styled.CastingContainer isRef={reviewRef} id="5">
         <Styled.Title>리뷰</Styled.Title>
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
         <Styled.CastingImage src={castScheduleImageURL} alt="공연" />
