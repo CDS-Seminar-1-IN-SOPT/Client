@@ -11,7 +11,7 @@ function FooterMenu() {
   const navigate = useNavigate();
 
   const goToPrevPage = () => {
-    navigate(`/dateoff/:scheduleId`);
+    navigate(`/dateoff/3`);
   };
 
   const handleLike = () => {

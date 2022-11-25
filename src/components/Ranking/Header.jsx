@@ -10,7 +10,7 @@ function Header() {
   const navigate = useNavigate();
 
   const goToPrevPage = () => {
-    navigate(`/`);
+    navigate(`/home`);
   };
 
   return (

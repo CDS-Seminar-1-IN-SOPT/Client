@@ -81,12 +81,15 @@ const Styled = {
     position: relative;
     width: 11.1rem;
     height: 14.5rem;
-    background-color: ${theme.colors.grey_04};
     border-radius: 0.5rem;
     color: ${theme.colors.white};
     margin-left: 0.6rem;
   `,
-  ShowImage: styled.img``,
+  ShowImage: styled.img`
+    width: 10.8rem;
+    height: 14.2rem;
+    border-radius: 0.5rem;
+  `,
   ShowContents: styled.div`
     display: flex;
     flex-direction: column;

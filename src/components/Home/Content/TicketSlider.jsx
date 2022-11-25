@@ -1,4 +1,5 @@
 import btn_search from 'assets/buttons/btn_search.svg';
+import { useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { EffectCoverflow, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,6 +8,8 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 function TicketSlider({ bannerData }) {
+  const navigate = useNavigate();
+
   const SwiperStyle = createGlobalStyle`
     .swiper-pagination-clickable{
     top:1.4rem;
@@ -18,6 +21,10 @@ function TicketSlider({ bannerData }) {
     overflow:visible;
   }
   `;
+
+  const viewFeed = () => {
+    navigate(`/feed`);
+  };
 
   return (
     <>
@@ -47,7 +54,7 @@ function TicketSlider({ bannerData }) {
           className="mySwiper">
           {bannerData.map((v) => (
             <Styled.Swiper key={v.id}>
-              <Styled.SwieperImg key={v.url} src={v.imageURL} />
+              <Styled.SwieperImg key={v.url} src={v.imageURL} onClick={viewFeed} />
             </Styled.Swiper>
           ))}
         </Swiper>

@@ -6,7 +6,7 @@ import useAPI from 'cores/hooks/useAPI';
 import React from 'react';
 
 function Feed() {
-  const showDetail = useAPI('http://52.3.174.121:3000/show/2').data;
+  const showDetail = useAPI('http://52.3.174.121:3000/show/3').data;
 
   return (
     <>

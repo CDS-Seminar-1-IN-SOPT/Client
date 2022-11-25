@@ -10,7 +10,7 @@ function Header() {
   const navigate = useNavigate();
   return (
     <Styled.Root>
-      <Styled.Button back src={back} alt="back" onClick={() => navigate(-1)} />
+      <Styled.Button back src={back} alt="back" onClick={() => navigate('/feed')} />
       <Styled.Title>날짜 / 시간 선택</Styled.Title>
       <Styled.Button mypage src={mypage} alt="mypage" />
       <Styled.Button menu src={menu} alt="menu" />

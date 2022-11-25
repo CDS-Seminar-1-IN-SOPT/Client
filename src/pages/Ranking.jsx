@@ -3,13 +3,14 @@ import Navbar from 'components/Ranking/Navbar';
 import PeriodSelector from 'components/Ranking/PeriodSelector';
 import PeriodView from 'components/Ranking/PeriodView';
 import ShowItemContainer from 'components/Ranking/ShowItemContainer';
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import useAPI from 'cores/hooks/useAPI';
+import React, { useState } from 'react';
 
 function Ranking() {
-  const [showData, setShowData] = useState([]);
+  const showData = useAPI('http://52.3.174.121:3000/show').data;
+
   const [pickedCategoryId, setPickedCategoryId] = useState(0);
-  const [categories] = useState([
+  const categories = [
     { category: '전체', id: 0 },
     { category: '콘서트', id: 1 },
     { category: '뮤지컬', id: 2 },
@@ -17,29 +18,27 @@ function Ranking() {
     { category: '클래식', id: 4 },
     { category: '전시회', id: 5 },
     { category: '어린이', id: 6 },
-  ]);
-
-  useEffect(() => {
-    fetch('/show')
-      .then((res) => res.json())
-      .then((data) => {
-        setShowData(data.showList);
-      });
-  }, []);
+  ];
 
   return (
-    <Styled.Root>
-      <Header />
-      <PeriodSelector />
-      <Navbar categories={categories} pickedCategoryId={pickedCategoryId} setPickedCategoryId={setPickedCategoryId} />
-      <PeriodView />
-      <ShowItemContainer showData={showData} pickedCategoryId={pickedCategoryId} />
-    </Styled.Root>
+    <>
+      {showData === undefined || showData === null ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <Header />
+          <PeriodSelector />
+          <Navbar
+            categories={categories}
+            pickedCategoryId={pickedCategoryId}
+            setPickedCategoryId={setPickedCategoryId}
+          />
+          <PeriodView />
+          <ShowItemContainer showData={showData.data.showList} pickedCategoryId={pickedCategoryId} />
+        </>
+      )}
+    </>
   );
 }
 
 export default Ranking;
-
-const Styled = {
-  Root: styled.div``,
-};

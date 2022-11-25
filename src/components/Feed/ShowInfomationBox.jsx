@@ -36,12 +36,7 @@ function ShowInfomationBox({ showDetail }) {
         </Styled.ShowRunningTime>
         <Styled.ShowDate>
           <Styled.ShowDateTitle>공연일시</Styled.ShowDateTitle>
-          <Styled.ShowDateDescription>
-            {showDetail.showTimeDiscription}
-            {showDetail.showTimeDiscription}
-            {showDetail.showTimeDiscription}
-            {showDetail.showTimeDiscription}
-          </Styled.ShowDateDescription>
+          <Styled.ShowDateDescription>{showDetail.showTimeDiscription}</Styled.ShowDateDescription>
         </Styled.ShowDate>
         <Styled.ShowPlace>
           <Styled.ShowPlaceTitle>공연장소</Styled.ShowPlaceTitle>
