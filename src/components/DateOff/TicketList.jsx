@@ -4,14 +4,13 @@ import { theme } from 'styles/theme';
 
 import TicketItem from './TicketItem';
 
-function TicketList() {
+function TicketList({ schedule }) {
   return (
     <Styled.Root>
       <Styled.TicketBlock>
-        <Styled.TicketTitle>11/18일 뮤지컬 [모달리아니]</Styled.TicketTitle>
+        <Styled.TicketTitle>뮤지컬 [모달리아니]</Styled.TicketTitle>
       </Styled.TicketBlock>
-      <TicketItem />
-      <TicketItem />
+      <TicketItem schedule={schedule} />
     </Styled.Root>
   );
 }

@@ -1,17 +1,39 @@
 import foward from 'assets/Icons/icn_foward_m.svg';
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
-function TicketItem() {
+function TicketItem({ schedule }) {
+  const { date } = useParams();
+
   return (
-    <Styled.Root>
-      <Styled.TicketInfo>
-        <Styled.TicketTime>14시 00분</Styled.TicketTime>
-        <Styled.Ticketcasting>출연 : 정선아, 에녹, 윤소호, 최현선, 임별, 김찬종</Styled.Ticketcasting>
-      </Styled.TicketInfo>
-      <Styled.FowardButton src={foward} alt="foward" />
-    </Styled.Root>
+    schedule &&
+    (date !== undefined ? (
+      date === '17' ? (
+        <Styled.Root>
+          <Styled.TicketInfo>
+            <Styled.TicketTime>
+              {schedule.scheduleList[1].startAt.slice(11, 13)}시 {schedule.scheduleList[1].startAt.slice(14, 16)}분
+            </Styled.TicketTime>
+            <Styled.Ticketcasting>{schedule.scheduleList[1].cast}</Styled.Ticketcasting>
+          </Styled.TicketInfo>
+          <Styled.FowardButton src={foward} alt="foward" />
+        </Styled.Root>
+      ) : (
+        <Styled.Root>
+          <Styled.TicketInfo>
+            <Styled.TicketTime>
+              {schedule.scheduleList[0].startAt.slice(11, 13)}시 {schedule.scheduleList[0].startAt.slice(14, 16)}분
+            </Styled.TicketTime>
+            <Styled.Ticketcasting>{schedule.scheduleList[0].cast}</Styled.Ticketcasting>
+          </Styled.TicketInfo>
+          <Styled.FowardButton src={foward} alt="foward" />
+        </Styled.Root>
+      )
+    ) : (
+      <Styled.SelectTicket>관람 날짜를 선택해주세요</Styled.SelectTicket>
+    ))
   );
 }
 
@@ -42,6 +64,14 @@ const Styled = {
     font-weight: ${theme.fontWeights.body02};
     color: ${theme.colors.grey_02};
     line-height: 1.5rem;
+  `,
+  SelectTicket: styled.div`
+    text-align: center;
+    height: 30.1rem;
+    color: ${theme.colors.grey_01};
+    font-weight: ${theme.fontWeights.body02};
+    font-size: ${theme.fontSizes.title03};
+    padding-top: 2.6rem;
   `,
   FowardButton: styled.img`
     position: absolute;

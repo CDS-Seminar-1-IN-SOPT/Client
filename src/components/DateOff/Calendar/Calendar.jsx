@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import CalendarBody from './CalendarBody';
 import CalendarHeader from './CalendarHeader';
 
-function Calendar() {
+function Calendar({ schedule }) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const prevMonth = () => {
@@ -15,11 +15,12 @@ function Calendar() {
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
   };
+
   return (
     <Styled.Root>
       <CalendarHeader currentMonth={currentMonth} prevMonth={prevMonth} nextMonth={nextMonth} />
 
-      <CalendarBody currentMonth={currentMonth} />
+      <CalendarBody schedule={schedule} currentMonth={currentMonth} />
     </Styled.Root>
   );
 }

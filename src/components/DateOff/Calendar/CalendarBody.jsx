@@ -5,25 +5,29 @@ import styled, { css } from 'styled-components';
 import { theme } from 'styles/theme';
 
 const DATES = ['월', '화', '수', '목', '금'];
-const MOVIE = ['01', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
 
-function CalendarBody({ currentMonth }) {
+function CalendarBody({ currentMonth, schedule }) {
   const navigate = useNavigate();
-  const { date } = useParams();
+  const { scheduleId, date } = useParams();
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
   const rows = [];
   let days = [];
+  let scheduleDate = [];
   let day = startDate;
   let formattedDate = '';
 
-  for (let i = 0; i < MOVIE.length; i++) {
-    if (MOVIE[i].charAt(0) === '0') {
-      let temp = MOVIE[i];
-      MOVIE.splice(i, 1);
-      MOVIE.push(temp.replace(/(^0+)/, ''));
+  for (let i = 0; i < schedule?.scheduleList?.length; i++) {
+    scheduleDate.push(schedule.scheduleList[i].startAt.slice(8, 10));
+  }
+
+  for (let i = 0; i < scheduleDate.length; i++) {
+    if (scheduleDate[i].charAt(0) === '0') {
+      let temp = scheduleDate[i];
+      scheduleDate.splice(i, 1);
+      scheduleDate.push(temp.replace(/(^0+)/, ''));
     }
   }
 
@@ -78,8 +82,8 @@ function CalendarBody({ currentMonth }) {
                     <Styled.Td
                       key={idx}
                       disabled={r.props.className === 'disabled'}
-                      movie={MOVIE.includes(r.props.children.props.children)}
-                      onClick={() => navigate(`/dateoff/${r.props.children.props.children}`)}>
+                      movie={scheduleDate.includes(r.props.children.props.children)}
+                      onClick={() => navigate(`/dateoff/${scheduleId}/${r.props.children.props.children}`)}>
                       {r.props.children.props.children}
                       {date === r.props.children.props.children && <Styled.Rectangle />}
                     </Styled.Td>
