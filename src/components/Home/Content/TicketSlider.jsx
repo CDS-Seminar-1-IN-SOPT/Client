@@ -7,8 +7,6 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 function TicketSlider({ bannerData }) {
-  // console.log(bannerData);
-
   const SwiperStyle = createGlobalStyle`
     .swiper-pagination-clickable{
     top:1.4rem;
@@ -49,7 +47,7 @@ function TicketSlider({ bannerData }) {
           className="mySwiper">
           {bannerData.map((v) => (
             <Styled.Swiper key={v.id}>
-              <Styled.SwieperImg key={v.url} src="https://swiperjs.com/demos/images/nature-2.jpg" />
+              <Styled.SwieperImg key={v.url} src={v.imageURL} />
             </Styled.Swiper>
           ))}
         </Swiper>

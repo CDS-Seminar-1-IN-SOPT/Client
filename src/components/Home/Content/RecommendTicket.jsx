@@ -1,6 +1,47 @@
+import axios from 'axios';
+import { client } from 'cores/api';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 function RecommendTicket() {
+  const [currentGenre, setcurrentGenre] = useState(1);
+  const [showData, setshowData] = useState([]);
+  const changeGenre = (e) => {
+    setcurrentGenre(e.target.id);
+  };
+  const getShowData = async () => {
+    const data = await client.get(`/show/genre?genreId=${currentGenre}`);
+    setshowData(data.data.data.showList);
+  };
+  useEffect(() => {
+    getShowData();
+  }, [currentGenre]);
+
+  const filterGenre = (showType) => {
+    switch (showType) {
+      case 1:
+        return '콘서트';
+      case 2:
+        return '뮤지컬';
+      case 3:
+        return '연극';
+      case 4:
+        return '클래식';
+      case 5:
+        return '전시회';
+      case 6:
+        return '어린이';
+    }
+  };
+  const filterDate = (reservation) => {
+    const date = new Date(reservation);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+
+    const dateString = year + '.' + month + '.' + day;
+    return dateString;
+  };
   return (
     <Styled.Recommend>
       <Styled.RecommendInfo>
@@ -8,28 +49,55 @@ function RecommendTicket() {
         이런 공연은 어떠세요?
       </Styled.RecommendInfo>
       <Styled.GenreLists>
-        <Styled.GenreBox>로맨스</Styled.GenreBox>
-        <Styled.UnchoicedGenreBox>공포</Styled.UnchoicedGenreBox>
-        <Styled.UnchoicedGenreBox>코믹</Styled.UnchoicedGenreBox>
-        <Styled.UnchoicedGenreBox>미스터리</Styled.UnchoicedGenreBox>
-        <Styled.UnchoicedGenreBox>퍼포먼스</Styled.UnchoicedGenreBox>
+        {currentGenre == 1 ? (
+          <Styled.GenreBox>로맨스</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={1} onClick={(e) => changeGenre(e)}>
+            로맨스
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 2 ? (
+          <Styled.GenreBox>공포</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={2} onClick={(e) => changeGenre(e)}>
+            공포
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 3 ? (
+          <Styled.GenreBox>코믹</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={3} onClick={(e) => changeGenre(e)}>
+            코믹
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 4 ? (
+          <Styled.GenreBox>미스터리</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={4} onClick={(e) => changeGenre(e)}>
+            미스터리
+          </Styled.UnchoicedGenreBox>
+        )}
+        {currentGenre == 5 ? (
+          <Styled.GenreBox>퍼포먼스</Styled.GenreBox>
+        ) : (
+          <Styled.UnchoicedGenreBox id={5} onClick={(e) => changeGenre(e)}>
+            퍼포먼스
+          </Styled.UnchoicedGenreBox>
+        )}
       </Styled.GenreLists>
-      <Styled.RecommendTicekt>
-        <Styled.RecommendImg src="ss" />
-        <Styled.RecoommedDate>예매 시간 2022.10.31~2022.11.06</Styled.RecoommedDate>
-        <Styled.TicektInfo>
-          <Styled.RecommendGenre>뮤지컬</Styled.RecommendGenre>
-          <Styled.RecommendTitle>우리가 사랑했던 그날</Styled.RecommendTitle>
-        </Styled.TicektInfo>
-      </Styled.RecommendTicekt>
-      <Styled.RecommendTicekt>
-        <Styled.RecommendImg src="ss" />
-        <Styled.RecoommedDate>예매 시간 2022.10.31~2022.11.06</Styled.RecoommedDate>
-        <Styled.TicektInfo>
-          <Styled.RecommendGenre>뮤지컬</Styled.RecommendGenre>
-          <Styled.RecommendTitle>우리가 사랑했던 그날</Styled.RecommendTitle>
-        </Styled.TicektInfo>
-      </Styled.RecommendTicekt>
+
+      {showData.map((ticket, index) => (
+        <Styled.RecommendTicekt key={ticket.title}>
+          <Styled.RecommendImg key={ticket.imageURL} src={ticket.imageURL} />
+          <Styled.RecoommedDate key={ticket.reservationStartAt}>
+            예매 시간 {filterDate(ticket.reservationStartAt)}~ {filterDate(ticket.reservationEndAt)}
+          </Styled.RecoommedDate>
+          <Styled.TicektInfo>
+            <Styled.RecommendGenre key={ticket.showType}>{filterGenre(ticket.showType)}</Styled.RecommendGenre>
+            <Styled.RecommendTitle key={ticket.title}>{ticket.title}</Styled.RecommendTitle>
+          </Styled.TicektInfo>
+        </Styled.RecommendTicekt>
+      ))}
     </Styled.Recommend>
   );
 }
@@ -68,6 +136,7 @@ const Styled = {
     align-items: center;
     text-align: center;
     border-bottom: 0.2rem solid #333333;
+    cursor: pointer;
   `,
   UnchoicedGenreBox: styled.div`
     width: 20%;
@@ -79,7 +148,7 @@ const Styled = {
     font-size: 12px;
     line-height: 15px;
     color: rgba(51, 51, 51, 0.4);
-
+    cursor: pointer;
     display: flex;
     align-items: center;
     text-align: center;
