@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { client } from 'cores/api';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -9,7 +10,7 @@ function RecommendTicket() {
     setcurrentGenre(e.target.id);
   };
   const getShowData = async () => {
-    const data = await axios.get(`http://52.3.174.121:3000/show/genre?genreId=${currentGenre}`);
+    const data = await client.get(`/show/genre?genreId=${currentGenre}`);
     setshowData(data.data.data.showList);
   };
   useEffect(() => {
