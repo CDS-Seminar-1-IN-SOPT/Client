@@ -13,6 +13,7 @@
     "react-responsive": "^9.0.0-beta.8",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.8",
     "styled-components": "^5.3.5",
     "styled-reset": "^4.3.4",
     "swiper": "^8.4.4",
