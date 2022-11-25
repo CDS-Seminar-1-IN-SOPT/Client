@@ -154,6 +154,7 @@ const Styled = {
         return css`
           color: black;
           font-weight: 800;
+          border-bottom: 0.3em solid ${theme.colors.black};
         `;
       }
     }}
