@@ -6,13 +6,30 @@ import { theme, mixins } from 'styles/theme';
 function ShowItemContainer({ showData, pickedCategoryId }) {
   const navigate = useNavigate();
 
+  const filter = showData.filter((a) => a.id < 6).sort((a, b) => a.id - b.id);
+  const filterArray = [
+    {
+      id: 1,
+      imageURL:
+        'https://sopt-cds-bucket.s3.amazonaws.com/%E3%85%85%E3%84%B7%E3%84%B4%E3%85%85/KakaoTalk_20221125_200223273_05.jpg',
+      isExclusive: true,
+      showEndAt: '2022-11-18T10:28:05.000Z',
+      showStartAt: '2022-11-17T10:28:02.000Z',
+      showType: 5,
+      title: '기울어진 사람들',
+    },
+    ...filter,
+  ];
+
+  filterArray[3].showType = 4;
+
   const goToFeed = () => {
     navigate(`/feed`);
   };
 
   return (
     <Styled.Root>
-      {showData.map((show) => (
+      {filterArray.map((show) => (
         <Styled.ShowItem key={show.id} showType={show.showType} pickedCategoryId={pickedCategoryId} onClick={goToFeed}>
           <Styled.ShowImageContainer>
             <Styled.ShowImage src={show.imageURL} alt="공연이미지" />
@@ -32,7 +49,7 @@ function ShowItemContainer({ showData, pickedCategoryId }) {
             <Styled.ShowInfomation>
               {show.isExclusive && <Styled.ExclusiveFlag>단독</Styled.ExclusiveFlag>}
               <Styled.ShowPeriod>{`${show.showStartAt.slice(0, 10)}~${show.showEndAt.slice(0, 10)}`}</Styled.ShowPeriod>
-              <Styled.ShowMemberRecruit>회원 모집</Styled.ShowMemberRecruit>
+              <Styled.ShowMemberRecruit>광림 아트센터</Styled.ShowMemberRecruit>
             </Styled.ShowInfomation>
           </Styled.ShowContents>
         </Styled.ShowItem>
