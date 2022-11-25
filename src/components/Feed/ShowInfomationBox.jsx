@@ -102,7 +102,7 @@ const Styled = {
     font-size: ${theme.fontSizes.body03};
     font-weight: ${theme.fontWeights.body03};
     position: absolute;
-    width: 7.3rem;
+    width: 10rem;
     height: 1.2rem;
     left: 14.2rem;
     top: 13rem;
